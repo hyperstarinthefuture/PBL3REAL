@@ -16,65 +16,30 @@ namespace PBL3REAL.View
 {
     public partial class Form_View_Statistic_Analyze : Form
     {
-        private System.ComponentModel.IContainer componentsTEMP = null;
-        System.Windows.Forms.DataVisualization.Charting.Chart C1;
         QLInvoiceBLL invoiceBLL;
         List<Statistic_InvoiceVM> listVM;
+        double rSquared, intercept, slope;
+        double[] xValues;
+        double[] yValues;
+        double predictedValue;
         public Form_View_Statistic_Analyze(/*DateTime from, DateTime to*/)
         {
             InitializeComponent();
-            C1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            //this.componentsTEMP = new System.ComponentModel.Container();
-            //System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            //System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            //this.C1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            //((System.ComponentModel.ISupportInitialize)(this.C1)).BeginInit();
-            //this.SuspendLayout();
-            ////
-            //// chart1
-            ////
-            //chartArea1.Name = "ChartArea1";
-            //this.C1.ChartAreas.Add(chartArea1);
-            //this.C1.Dock = System.Windows.Forms.DockStyle.Fill;
-            //legend1.Name = "Legend1";
-            //this.C1.Legends.Add(legend1);
-            //this.C1.Location = new System.Drawing.Point(20, 20);
-            //this.C1.Name = "chart1";
-            //// this.chart1.Size = new System.Drawing.Size(284, 212);
-            //this.C1.TabIndex = 0;
-            //this.C1.Text = "chart1";
-            //this.Load += new System.EventHandler(this.Form_View_Statistic_Analyze_Load);
-            //((System.ComponentModel.ISupportInitialize)(this.C1)).EndInit();
-            //this.ResumeLayout(false);
-            //C1.Series.Clear();
-
-            //var series1 = new System.Windows.Forms.DataVisualization.Charting.Series
-            //{
-            //    Name = "Total",
-            //    Color = System.Drawing.Color.Green,
-            //    IsVisibleInLegend = false,
-            //    IsXValueIndexed = true,
-            //    ChartType = SeriesChartType.Line
-            //};
-
-
-            //this.C1.Series.Add(series1);
-            //C1.Invalidate();
             invoiceBLL = new QLInvoiceBLL();
             listVM = invoiceBLL.findForStatistic(Convert.ToDateTime("2021-04-28"), Convert.ToDateTime("2021-05-10"));
+            FillChart();
+            this.chart1.SaveImage(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName + "\\chart.png", ChartImageFormat.Png);
+            predictedValue = (slope * 2017) + intercept;
+            LinearRegression(xValues, yValues, out rSquared, out intercept, out slope);
+        }
+        public void statistics(string query, int type)
+        {
             dgv_Booking.DataSource = listVM;
-            //FillChart();
-            grbx_Statistic.Visible = false;
             chart1.DataSource = listVM;
             chart1.Series.Add("Income");
             chart1.Series["Income"].XValueMember = "Date";
             chart1.Series["Income"].YValueMembers = "TotalByDate";
             chart1.Visible = true;
-            //this.C1.SaveImage(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName + "\\chart.png", ChartImageFormat.Png);
-            //this.C1.
-        }
-        public void statistics(string query, int type)
-        {
             //int len = dt.Rows.Count;
             //if (len == 0)
             //{
@@ -109,10 +74,10 @@ namespace PBL3REAL.View
         }
         public void FillChart()
         {
-            C1.DataSource = listVM;
-            C1.Series.Add("Income");
-            C1.Series["Income"].XValueMember = "Date";
-            C1.Series["Income"].YValueMembers = "TotalByDate";
+            chart1.DataSource = listVM;
+            chart1.Series.Add("Income");
+            chart1.Series["Income"].XValueMember = "Date";
+            chart1.Series["Income"].YValueMembers = "TotalByDate";
             //if (type == 1)
             //{
             //    C1.Series["Series1"].XValueMember = "Ngày";
@@ -123,9 +88,55 @@ namespace PBL3REAL.View
             //    C1.Series["Series1"].XValueMember = "Mục đích chi tiêu";
             //    C1.Series["Series1"].YValueMembers = "Số tiền đã chi";
             //}
-            C1.Series["Income"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
+            chart1.Series["Income"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
+        }
+        public class LinearRegression
+        {
+            public double[] xVals { get; private set; }
+            public double[] yVals { get; private set; }
+            public LinearRegression(double[] xValss, double[] yValss)
+            {
+                this.xVals = xValss;
+                this.yVals = yValss;
+            }
+            public void PredictData()
+            {
+                if (this.xVals.Length != this.yVals.Length)
+                {
+                    throw new Exception("Input values should be with the same length.");
+                }
+                double sumOfX = 0;
+                double sumOfY = 0;
+                double sumOfXSq = 0;
+                double sumOfYSq = 0;
+                double sumCodeviates = 0;
+                for (var i = 0; i < xVals.Length; i++)
+                {
+                    var x = xVals[i];
+                    var y = yVals[i];
+                    sumCodeviates += x * y;
+                    sumOfX += x;
+                    sumOfY += y;
+                    sumOfXSq += x * x;
+                    sumOfYSq += y * y;
+                }
 
+                var count = xVals.Length;
+                var ssX = sumOfXSq - ((sumOfX * sumOfX) / count);
+                var ssY = sumOfYSq - ((sumOfY * sumOfY) / count);
 
+                var rNumerator = (count * sumCodeviates) - (sumOfX * sumOfY);
+                var rDenom = (count * sumOfXSq - (sumOfX * sumOfX)) * (count * sumOfYSq - (sumOfY * sumOfY));
+                var sCo = sumCodeviates - ((sumOfX * sumOfY) / count);
+
+                var meanX = sumOfX / count;
+                var meanY = sumOfY / count;
+                var dblR = rNumerator / Math.Sqrt(rDenom);
+
+                rSquared = dblR * dblR;
+                yIntercept = meanY - ((sCo / ssX) * meanX);
+                slope = sCo / ssX;
+            }
         }
         public class MaxHeap
         {
