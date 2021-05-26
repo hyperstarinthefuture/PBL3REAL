@@ -1,0 +1,12 @@
+parent_id,url,name,order_index,active_flag
+0,/user-management,Manage Users,1,1
+0,/room,Manage Rooms,2,1
+1,/user/list,List User,1,1
+1,/user/add,Add User,-1,1
+1,/user/edit,Edit User,-1,1
+1,/user/delete,Delete User,-1,1
+2,/room-management/roomtype/list,List roomtype,1,1
+2,/room-management/room/list,List rooms,2,1
+2,/room-management/roomtype/add,Add Roomtype,-1,1
+2,/room-management/roomtype/edit,Edit Roomtype,-1,1
+2,/room-management/room/add,Add Room,-1,1

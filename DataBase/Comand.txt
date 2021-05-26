@@ -1,0 +1,87 @@
+	+Trigger delete booking_detail :
+CREATE TRIGGER del_booking_statusroom
+ON booking_detail
+AFTER delete 
+AS
+BEGIN
+	 SET NOCOUNT ON;
+	 DECLARE @fromdate Date , @toDate Date 
+
+	 select @fromdate = book_checkindate,@toDate = book_paymentdate  from inserted i join booking on i.boodet_idbook = id_book
+	 delete from status_time where statim_fromdate =@fromdate AND statim_todate = @toDate
+END;
+
+
+	+Trigger add booking_detail :
+CREATE TRIGGER add_booking_statusroom
+ON booking_detail
+AFTER insert 
+AS
+BEGIN
+	 SET NOCOUNT ON;
+	 DECLARE @id_status INT
+	 
+	 SET @id_status = 2
+	 Insert into status_time(statim_fromdate , statim_todate ,statim_idroom ,statim_idstatus)
+	 select book_checkindate,book_paymentdate,i.boodet_idroom,@id_status from inserted AS i join booking on i.boodet_idbook = booking.id_book
+END;
+
+
+	+Trigger update booking --->change status_time 
+CREATE TRIGGER update_booking_statusroom
+ON booking
+AFTER delete 
+AS
+BEGIN
+	 SET NOCOUNT ON;
+	 DECLARE @fromdate Date , @toDate Date ,@bookStatus Varchar(8)
+	 select @fromdate = book_checkindate,@toDate = book_paymentdate ,@bookStatus = book_status  from inserted i 
+	 
+	 IF @bookStatus ='Finish'
+	   BEGIN 
+		UPDATE status_time SET statim_idstatus =3 WHERE statim_fromdate =@fromdate AND statim_todate = @toDate
+	   END
+END;
+
+
+	+Stored Procedure :
+USE [HotelManagementREAL]
+GO
+/****** Object:  StoredProcedure [dbo].[GetAvailableRoom]    Script Date: 5/8/2021 11:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[GetAvailableRoom]
+            @IdRoomType int , @fromDate DateTime2 , @toDate DateTime2
+        AS
+        BEGIN
+            SET NOCOUNT ON;
+            select room.* from room 
+			join room_type on room_idroomtype = room_type.id_roomtype
+			where id_roomtype = @IdRoomType AND id_room NOT IN (select id_room from room join room_type on room_idroomtype = room_type.id_roomtype
+																						 join status_time on id_room = statim_idroom
+																						 join status on statim_idstatus = id_status 
+																						 where id_roomtype = @IdRoomType AND  (statim_fromdate BETWEEN @fromDate and @toDate) OR (statim_todate BETWEEN @fromDate and @toDate)
+																						 )
+        END
+
+
+	+Stored Procedure  : Get Count(*) of table 
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[TotalRows]
+            @tablename varchar(20)
+        AS
+       BEGIN
+     DECLARE @sql NVARCHAR(4000)= '',@rownumber INT
+     SET @sql = 'SELECT @rownumber = Count(*) FROM '+quotename(@tablename) 
+
+   EXEC sp_executesql @sql, N'@rownumber int output',@rownumber OUTPUT
+
+   SELECT @rownumber
+   END

@@ -1,0 +1,5 @@
+id,sta_name,sta_des
+1,Maintained,Room is maintained for better service
+2,Occupied,Guests have already taken this room
+3,Booked,This room is being booked
+ 
