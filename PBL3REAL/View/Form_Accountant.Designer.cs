@@ -32,6 +32,7 @@ namespace PBL3REAL.View
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Accountant));
             this.tabControl_Accountant = new System.Windows.Forms.TabControl();
             this.tabPage_General = new System.Windows.Forms.TabPage();
+            this.btn_Home = new System.Windows.Forms.Button();
             this.tabPage_Invoice = new System.Windows.Forms.TabPage();
             this.dgv_Invoice = new System.Windows.Forms.DataGridView();
             this.fllaypn_InvoiceButtons = new System.Windows.Forms.FlowLayoutPanel();
@@ -66,6 +67,7 @@ namespace PBL3REAL.View
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.tabControl_Accountant.SuspendLayout();
+            this.tabPage_General.SuspendLayout();
             this.tabPage_Invoice.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Invoice)).BeginInit();
             this.fllaypn_InvoiceButtons.SuspendLayout();
@@ -97,6 +99,7 @@ namespace PBL3REAL.View
             // 
             // tabPage_General
             // 
+            this.tabPage_General.Controls.Add(this.btn_Home);
             this.tabPage_General.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.tabPage_General.Location = new System.Drawing.Point(4, 37);
             this.tabPage_General.Name = "tabPage_General";
@@ -105,6 +108,21 @@ namespace PBL3REAL.View
             this.tabPage_General.TabIndex = 0;
             this.tabPage_General.Text = "Chung";
             this.tabPage_General.UseVisualStyleBackColor = true;
+            // 
+            // btn_Home
+            // 
+            this.btn_Home.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_Home.FlatAppearance.BorderSize = 0;
+            this.btn_Home.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Home.Image = global::PBL3REAL.Properties.Resources.home_page_fluent_color_96px;
+            this.btn_Home.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btn_Home.Location = new System.Drawing.Point(389, 238);
+            this.btn_Home.Name = "btn_Home";
+            this.btn_Home.Size = new System.Drawing.Size(194, 183);
+            this.btn_Home.TabIndex = 1;
+            this.btn_Home.Text = "Return Home";
+            this.btn_Home.UseVisualStyleBackColor = true;
+            this.btn_Home.Click += new System.EventHandler(this.btn_Home_Click);
             // 
             // tabPage_Invoice
             // 
@@ -212,7 +230,7 @@ namespace PBL3REAL.View
             this.tbllaypn_Invoice.ColumnCount = 3;
             this.tbllaypn_Invoice.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.30407F));
             this.tbllaypn_Invoice.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 62.69593F));
-            this.tbllaypn_Invoice.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
+            this.tbllaypn_Invoice.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.tbllaypn_Invoice.Controls.Add(this.picbx_InvoiceSearch, 2, 1);
             this.tbllaypn_Invoice.Controls.Add(this.picbx_InvoiceSort, 2, 0);
             this.tbllaypn_Invoice.Controls.Add(this.cbb_InvoiceSort, 1, 0);
@@ -230,7 +248,7 @@ namespace PBL3REAL.View
             // picbx_InvoiceSearch
             // 
             this.picbx_InvoiceSearch.Image = global::PBL3REAL.Properties.Resources.search_fluent_color_48px;
-            this.picbx_InvoiceSearch.Location = new System.Drawing.Point(318, 58);
+            this.picbx_InvoiceSearch.Location = new System.Drawing.Point(308, 58);
             this.picbx_InvoiceSearch.Name = "picbx_InvoiceSearch";
             this.picbx_InvoiceSearch.Size = new System.Drawing.Size(47, 48);
             this.picbx_InvoiceSearch.TabIndex = 10;
@@ -239,7 +257,7 @@ namespace PBL3REAL.View
             // picbx_InvoiceSort
             // 
             this.picbx_InvoiceSort.Image = global::PBL3REAL.Properties.Resources.filter_fluent_color_48px;
-            this.picbx_InvoiceSort.Location = new System.Drawing.Point(318, 3);
+            this.picbx_InvoiceSort.Location = new System.Drawing.Point(308, 3);
             this.picbx_InvoiceSort.Name = "picbx_InvoiceSort";
             this.picbx_InvoiceSort.Size = new System.Drawing.Size(47, 48);
             this.picbx_InvoiceSort.TabIndex = 9;
@@ -253,9 +271,9 @@ namespace PBL3REAL.View
             this.cbb_InvoiceSort.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbb_InvoiceSort.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cbb_InvoiceSort.FormattingEnabled = true;
-            this.cbb_InvoiceSort.Location = new System.Drawing.Point(120, 3);
+            this.cbb_InvoiceSort.Location = new System.Drawing.Point(117, 3);
             this.cbb_InvoiceSort.Name = "cbb_InvoiceSort";
-            this.cbb_InvoiceSort.Size = new System.Drawing.Size(192, 39);
+            this.cbb_InvoiceSort.Size = new System.Drawing.Size(185, 39);
             this.cbb_InvoiceSort.TabIndex = 0;
             // 
             // tb_InvoiceSearch
@@ -264,9 +282,9 @@ namespace PBL3REAL.View
             this.tb_InvoiceSearch.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tb_InvoiceSearch.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_InvoiceSearch.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tb_InvoiceSearch.Location = new System.Drawing.Point(120, 58);
+            this.tb_InvoiceSearch.Location = new System.Drawing.Point(117, 58);
             this.tb_InvoiceSearch.Name = "tb_InvoiceSearch";
-            this.tb_InvoiceSearch.Size = new System.Drawing.Size(192, 31);
+            this.tb_InvoiceSearch.Size = new System.Drawing.Size(185, 31);
             this.tb_InvoiceSearch.TabIndex = 0;
             // 
             // lb_InvoiceSearch
@@ -275,7 +293,7 @@ namespace PBL3REAL.View
             this.lb_InvoiceSearch.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lb_InvoiceSearch.Location = new System.Drawing.Point(3, 55);
             this.lb_InvoiceSearch.Name = "lb_InvoiceSearch";
-            this.lb_InvoiceSearch.Size = new System.Drawing.Size(111, 56);
+            this.lb_InvoiceSearch.Size = new System.Drawing.Size(108, 56);
             this.lb_InvoiceSearch.TabIndex = 0;
             this.lb_InvoiceSearch.Text = "Tìm kiếm";
             // 
@@ -285,7 +303,7 @@ namespace PBL3REAL.View
             this.lb_InvoiceSort.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lb_InvoiceSort.Location = new System.Drawing.Point(3, 0);
             this.lb_InvoiceSort.Name = "lb_InvoiceSort";
-            this.lb_InvoiceSort.Size = new System.Drawing.Size(111, 55);
+            this.lb_InvoiceSort.Size = new System.Drawing.Size(108, 55);
             this.lb_InvoiceSort.TabIndex = 0;
             this.lb_InvoiceSort.Text = "Sắp xếp theo";
             // 
@@ -415,6 +433,7 @@ namespace PBL3REAL.View
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(110, 130);
             this.tableLayoutPanel4.TabIndex = 1;
+            this.tableLayoutPanel4.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel4_Paint);
             // 
             // btn_Reset
             // 
@@ -445,6 +464,7 @@ namespace PBL3REAL.View
             this.btn_OK.TabIndex = 1;
             this.btn_OK.Text = "OK";
             this.btn_OK.UseVisualStyleBackColor = false;
+            this.btn_OK.Click += new System.EventHandler(this.btn_OK_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -529,6 +549,7 @@ namespace PBL3REAL.View
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form_Accountant";
             this.tabControl_Accountant.ResumeLayout(false);
+            this.tabPage_General.ResumeLayout(false);
             this.tabPage_Invoice.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Invoice)).EndInit();
             this.fllaypn_InvoiceButtons.ResumeLayout(false);
@@ -588,5 +609,6 @@ namespace PBL3REAL.View
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btn_OK;
         private System.Windows.Forms.Button btn_Reset;
+        private System.Windows.Forms.Button btn_Home;
     }
 }

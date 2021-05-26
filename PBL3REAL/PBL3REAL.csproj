@@ -20,9 +20,11 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="PdfSharp" Version="1.50.5147" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
     <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="5.0.1" />
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
     <PackageReference Include="System.Text.Encoding.CodePages" Version="4.7.0" />
+    <PackageReference Include="System.Windows.Forms.DataVisualization" Version="1.0.0-prerelease.19212.2" />
   </ItemGroup>
 
   <ItemGroup>
