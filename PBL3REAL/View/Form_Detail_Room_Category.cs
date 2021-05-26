@@ -36,6 +36,7 @@ namespace PBL3REAL.View
             this.idRoomType = idRoomType;
             userBLL = new QLUserBLL();
             listdel = new List<int>();
+            string tempname = tb_RoomTypeCapacity.Text;
         }
         //Loading Data Function
         public void LoadData(int idroomtype, bool Editable) 
@@ -287,7 +288,7 @@ namespace PBL3REAL.View
             roomTypeVM.ListImg.Add(image2);
             roomTypeBLL.addRoomType(roomTypeVM);
         }
-        private void EditRoomType()
+        private void EditRoomType(int res)
         {
             string temp1 = tb_RoomTypeCapacity.Text;
             switch (TotalPic - TotalPicAdded)
@@ -298,8 +299,6 @@ namespace PBL3REAL.View
                     SaveIMG();
                     break;
             }
-            int res = 0;
-            int.TryParse(tb_RoomTypeCapacity.Text, out res);
             roomTypeVM.RotyCapacity = res;
             List<int> temp = listdel;
             roomTypeBLL.editRoomType(roomTypeVM, temp);
@@ -427,9 +426,10 @@ namespace PBL3REAL.View
         {
             //Gọi hàm BLL xử lí nghiệp vụ
             //myDel();
+            string TEMPNAME = tb_RoomTypeCapacity.Text;
             if (listdel.Count == 0)
             {
-                this.Dispose();
+                //this.Dispose();
             }
             if (idRoomType == 0)
             {
@@ -439,7 +439,9 @@ namespace PBL3REAL.View
             else
             {
                 //Edit
-                EditRoomType();
+                int res = 0;
+                int.TryParse(tb_RoomTypeCapacity.Text, out res);
+                EditRoomType(res);
             }
             this.Dispose();
         }
