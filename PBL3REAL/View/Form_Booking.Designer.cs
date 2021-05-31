@@ -29,16 +29,23 @@ namespace PBL3REAL.View
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Booking));
             this.lb_Header = new System.Windows.Forms.Label();
             this.grbx_ClientInfo = new System.Windows.Forms.GroupBox();
+            this.picbx_ClientSearch = new System.Windows.Forms.PictureBox();
             this.tbllaypn_ClientInfo = new System.Windows.Forms.TableLayoutPanel();
-            this.tb_ClientContact = new System.Windows.Forms.TextBox();
-            this.tb_ClientAddress = new System.Windows.Forms.TextBox();
+            this.tbllaypn_ClientType = new System.Windows.Forms.TableLayoutPanel();
+            this.rbtn_OldClient = new System.Windows.Forms.RadioButton();
+            this.rbtn_NewClient = new System.Windows.Forms.RadioButton();
             this.tb_ClientName = new System.Windows.Forms.TextBox();
+            this.lb_ClientSearch = new System.Windows.Forms.Label();
+            this.lb_ClientType = new System.Windows.Forms.Label();
+            this.lb_ClientPhone = new System.Windows.Forms.Label();
+            this.tb_ClientPhone = new System.Windows.Forms.TextBox();
+            this.lb_ClientEmail = new System.Windows.Forms.Label();
+            this.tb_ClientEmail = new System.Windows.Forms.TextBox();
             this.lb_ClientName = new System.Windows.Forms.Label();
-            this.lb_ClientAddress = new System.Windows.Forms.Label();
-            this.lb_ClientContact = new System.Windows.Forms.Label();
             this.grbx_PeriodTime = new System.Windows.Forms.GroupBox();
             this.tbllaypn_RoomList = new System.Windows.Forms.TableLayoutPanel();
             this.picbx_Add = new System.Windows.Forms.PictureBox();
@@ -52,7 +59,6 @@ namespace PBL3REAL.View
             this.dtp_From = new System.Windows.Forms.DateTimePicker();
             this.lb_To = new System.Windows.Forms.Label();
             this.lb_From = new System.Windows.Forms.Label();
-            this.dgv = new System.Windows.Forms.DataGridView();
             this.tbllaypn_ControlButtons = new System.Windows.Forms.TableLayoutPanel();
             this.btn_Checkin = new System.Windows.Forms.Button();
             this.btn_Invoice = new System.Windows.Forms.Button();
@@ -80,14 +86,17 @@ namespace PBL3REAL.View
             this.fllaypn_Status = new System.Windows.Forms.FlowLayoutPanel();
             this.lb_Status = new System.Windows.Forms.Label();
             this.cbb_Status = new System.Windows.Forms.ComboBox();
+            this.dgv = new System.Windows.Forms.DataGridView();
+            this.tb_ClientSearch = new System.Windows.Forms.TextBox();
             this.grbx_ClientInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picbx_ClientSearch)).BeginInit();
             this.tbllaypn_ClientInfo.SuspendLayout();
+            this.tbllaypn_ClientType.SuspendLayout();
             this.grbx_PeriodTime.SuspendLayout();
             this.tbllaypn_RoomList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picbx_Add)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picbx_Enter)).BeginInit();
             this.tbllaypn_FromTo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.tbllaypn_ControlButtons.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picbx_Delete)).BeginInit();
             this.grbx_BookingInfo.SuspendLayout();
@@ -98,6 +107,7 @@ namespace PBL3REAL.View
             this.fllaypn_BookDate.SuspendLayout();
             this.fllaypn_DueDate.SuspendLayout();
             this.fllaypn_Status.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.SuspendLayout();
             // 
             // lb_Header
@@ -105,7 +115,7 @@ namespace PBL3REAL.View
             this.lb_Header.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lb_Header.AutoSize = true;
             this.lb_Header.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lb_Header.Location = new System.Drawing.Point(385, 9);
+            this.lb_Header.Location = new System.Drawing.Point(469, 9);
             this.lb_Header.Name = "lb_Header";
             this.lb_Header.Size = new System.Drawing.Size(171, 45);
             this.lb_Header.TabIndex = 0;
@@ -114,71 +124,178 @@ namespace PBL3REAL.View
             // grbx_ClientInfo
             // 
             this.grbx_ClientInfo.BackColor = System.Drawing.Color.Transparent;
+            this.grbx_ClientInfo.Controls.Add(this.picbx_ClientSearch);
             this.grbx_ClientInfo.Controls.Add(this.tbllaypn_ClientInfo);
             this.grbx_ClientInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.grbx_ClientInfo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.grbx_ClientInfo.Location = new System.Drawing.Point(12, 60);
             this.grbx_ClientInfo.Name = "grbx_ClientInfo";
-            this.grbx_ClientInfo.Size = new System.Drawing.Size(399, 262);
+            this.grbx_ClientInfo.Size = new System.Drawing.Size(556, 262);
             this.grbx_ClientInfo.TabIndex = 0;
             this.grbx_ClientInfo.TabStop = false;
             this.grbx_ClientInfo.Text = "Thông tin khách hàng";
             // 
+            // picbx_ClientSearch
+            // 
+            this.picbx_ClientSearch.Image = global::PBL3REAL.Properties.Resources.search_fluent_color_48px;
+            this.picbx_ClientSearch.Location = new System.Drawing.Point(490, 75);
+            this.picbx_ClientSearch.Name = "picbx_ClientSearch";
+            this.picbx_ClientSearch.Size = new System.Drawing.Size(49, 44);
+            this.picbx_ClientSearch.TabIndex = 1;
+            this.picbx_ClientSearch.TabStop = false;
+            this.picbx_ClientSearch.Click += new System.EventHandler(this.picbx_ClientSearch_Click);
+            // 
             // tbllaypn_ClientInfo
             // 
             this.tbllaypn_ClientInfo.ColumnCount = 2;
-            this.tbllaypn_ClientInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.77003F));
-            this.tbllaypn_ClientInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 53.22997F));
-            this.tbllaypn_ClientInfo.Controls.Add(this.tb_ClientContact, 1, 2);
-            this.tbllaypn_ClientInfo.Controls.Add(this.tb_ClientAddress, 1, 1);
-            this.tbllaypn_ClientInfo.Controls.Add(this.tb_ClientName, 1, 0);
-            this.tbllaypn_ClientInfo.Controls.Add(this.lb_ClientName, 0, 0);
-            this.tbllaypn_ClientInfo.Controls.Add(this.lb_ClientAddress, 0, 1);
-            this.tbllaypn_ClientInfo.Controls.Add(this.lb_ClientContact, 0, 2);
+            this.tbllaypn_ClientInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.625F));
+            this.tbllaypn_ClientInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 59.375F));
+            this.tbllaypn_ClientInfo.Controls.Add(this.tb_ClientSearch, 1, 1);
+            this.tbllaypn_ClientInfo.Controls.Add(this.tbllaypn_ClientType, 1, 0);
+            this.tbllaypn_ClientInfo.Controls.Add(this.tb_ClientName, 1, 2);
+            this.tbllaypn_ClientInfo.Controls.Add(this.lb_ClientSearch, 0, 1);
+            this.tbllaypn_ClientInfo.Controls.Add(this.lb_ClientType, 0, 0);
+            this.tbllaypn_ClientInfo.Controls.Add(this.lb_ClientPhone, 0, 4);
+            this.tbllaypn_ClientInfo.Controls.Add(this.tb_ClientPhone, 1, 4);
+            this.tbllaypn_ClientInfo.Controls.Add(this.lb_ClientEmail, 0, 3);
+            this.tbllaypn_ClientInfo.Controls.Add(this.tb_ClientEmail, 1, 3);
+            this.tbllaypn_ClientInfo.Controls.Add(this.lb_ClientName, 0, 2);
             this.tbllaypn_ClientInfo.Location = new System.Drawing.Point(6, 33);
             this.tbllaypn_ClientInfo.Name = "tbllaypn_ClientInfo";
-            this.tbllaypn_ClientInfo.RowCount = 3;
-            this.tbllaypn_ClientInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 17.41072F));
-            this.tbllaypn_ClientInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 66.51786F));
-            this.tbllaypn_ClientInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.07143F));
-            this.tbllaypn_ClientInfo.Size = new System.Drawing.Size(387, 224);
+            this.tbllaypn_ClientInfo.RowCount = 5;
+            this.tbllaypn_ClientInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tbllaypn_ClientInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tbllaypn_ClientInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tbllaypn_ClientInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tbllaypn_ClientInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tbllaypn_ClientInfo.Size = new System.Drawing.Size(484, 224);
             this.tbllaypn_ClientInfo.TabIndex = 0;
             // 
-            // tb_ClientContact
+            // tbllaypn_ClientType
             // 
-            this.tb_ClientContact.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.tb_ClientContact.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(185)))), ((int)(((byte)(255)))));
-            this.tb_ClientContact.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tb_ClientContact.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tb_ClientContact.Location = new System.Drawing.Point(184, 192);
-            this.tb_ClientContact.Name = "tb_ClientContact";
-            this.tb_ClientContact.Size = new System.Drawing.Size(200, 27);
-            this.tb_ClientContact.TabIndex = 3;
-            this.tb_ClientContact.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbllaypn_ClientType.ColumnCount = 2;
+            this.tbllaypn_ClientType.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.96403F));
+            this.tbllaypn_ClientType.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55.03597F));
+            this.tbllaypn_ClientType.Controls.Add(this.rbtn_OldClient, 1, 0);
+            this.tbllaypn_ClientType.Controls.Add(this.rbtn_NewClient, 0, 0);
+            this.tbllaypn_ClientType.Location = new System.Drawing.Point(199, 3);
+            this.tbllaypn_ClientType.Name = "tbllaypn_ClientType";
+            this.tbllaypn_ClientType.RowCount = 1;
+            this.tbllaypn_ClientType.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tbllaypn_ClientType.Size = new System.Drawing.Size(278, 38);
+            this.tbllaypn_ClientType.TabIndex = 0;
             // 
-            // tb_ClientAddress
+            // rbtn_OldClient
             // 
-            this.tb_ClientAddress.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.tb_ClientAddress.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(185)))), ((int)(((byte)(255)))));
-            this.tb_ClientAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tb_ClientAddress.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tb_ClientAddress.Location = new System.Drawing.Point(184, 43);
-            this.tb_ClientAddress.Multiline = true;
-            this.tb_ClientAddress.Name = "tb_ClientAddress";
-            this.tb_ClientAddress.Size = new System.Drawing.Size(200, 140);
-            this.tb_ClientAddress.TabIndex = 2;
+            this.rbtn_OldClient.AutoSize = true;
+            this.rbtn_OldClient.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.rbtn_OldClient.Location = new System.Drawing.Point(128, 3);
+            this.rbtn_OldClient.Name = "rbtn_OldClient";
+            this.rbtn_OldClient.Size = new System.Drawing.Size(147, 32);
+            this.rbtn_OldClient.TabIndex = 0;
+            this.rbtn_OldClient.TabStop = true;
+            this.rbtn_OldClient.Text = "Từng đặt phòng";
+            this.rbtn_OldClient.UseVisualStyleBackColor = true;
+            this.rbtn_OldClient.CheckedChanged += new System.EventHandler(this.rbtn_OldClient_CheckedChanged);
+            // 
+            // rbtn_NewClient
+            // 
+            this.rbtn_NewClient.AutoSize = true;
+            this.rbtn_NewClient.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.rbtn_NewClient.Location = new System.Drawing.Point(3, 3);
+            this.rbtn_NewClient.Name = "rbtn_NewClient";
+            this.rbtn_NewClient.Size = new System.Drawing.Size(68, 32);
+            this.rbtn_NewClient.TabIndex = 0;
+            this.rbtn_NewClient.TabStop = true;
+            this.rbtn_NewClient.Text = "Mới";
+            this.rbtn_NewClient.UseVisualStyleBackColor = true;
+            this.rbtn_NewClient.CheckedChanged += new System.EventHandler(this.rbtn_NewClient_CheckedChanged);
             // 
             // tb_ClientName
             // 
             this.tb_ClientName.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.tb_ClientName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(185)))), ((int)(((byte)(255)))));
             this.tb_ClientName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tb_ClientName.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tb_ClientName.Location = new System.Drawing.Point(184, 6);
+            this.tb_ClientName.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.tb_ClientName.Location = new System.Drawing.Point(199, 94);
+            this.tb_ClientName.Multiline = true;
             this.tb_ClientName.Name = "tb_ClientName";
-            this.tb_ClientName.Size = new System.Drawing.Size(200, 27);
+            this.tb_ClientName.Size = new System.Drawing.Size(275, 31);
             this.tb_ClientName.TabIndex = 1;
             this.tb_ClientName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // lb_ClientSearch
+            // 
+            this.lb_ClientSearch.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lb_ClientSearch.AutoSize = true;
+            this.lb_ClientSearch.BackColor = System.Drawing.Color.Transparent;
+            this.lb_ClientSearch.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lb_ClientSearch.Location = new System.Drawing.Point(3, 50);
+            this.lb_ClientSearch.Name = "lb_ClientSearch";
+            this.lb_ClientSearch.Size = new System.Drawing.Size(107, 31);
+            this.lb_ClientSearch.TabIndex = 0;
+            this.lb_ClientSearch.Text = "Tìm kiếm";
+            // 
+            // lb_ClientType
+            // 
+            this.lb_ClientType.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lb_ClientType.AutoSize = true;
+            this.lb_ClientType.BackColor = System.Drawing.Color.Transparent;
+            this.lb_ClientType.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lb_ClientType.Location = new System.Drawing.Point(3, 6);
+            this.lb_ClientType.Name = "lb_ClientType";
+            this.lb_ClientType.Size = new System.Drawing.Size(180, 31);
+            this.lb_ClientType.TabIndex = 0;
+            this.lb_ClientType.Text = "Loại khách hàng";
+            // 
+            // lb_ClientPhone
+            // 
+            this.lb_ClientPhone.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lb_ClientPhone.AutoSize = true;
+            this.lb_ClientPhone.BackColor = System.Drawing.Color.Transparent;
+            this.lb_ClientPhone.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lb_ClientPhone.Location = new System.Drawing.Point(3, 184);
+            this.lb_ClientPhone.Name = "lb_ClientPhone";
+            this.lb_ClientPhone.Size = new System.Drawing.Size(148, 31);
+            this.lb_ClientPhone.TabIndex = 0;
+            this.lb_ClientPhone.Text = "Số điện thoại";
+            // 
+            // tb_ClientPhone
+            // 
+            this.tb_ClientPhone.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.tb_ClientPhone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(185)))), ((int)(((byte)(255)))));
+            this.tb_ClientPhone.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tb_ClientPhone.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.tb_ClientPhone.Location = new System.Drawing.Point(199, 184);
+            this.tb_ClientPhone.Name = "tb_ClientPhone";
+            this.tb_ClientPhone.Size = new System.Drawing.Size(275, 31);
+            this.tb_ClientPhone.TabIndex = 3;
+            this.tb_ClientPhone.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // lb_ClientEmail
+            // 
+            this.lb_ClientEmail.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lb_ClientEmail.AutoSize = true;
+            this.lb_ClientEmail.BackColor = System.Drawing.Color.Transparent;
+            this.lb_ClientEmail.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lb_ClientEmail.Location = new System.Drawing.Point(3, 138);
+            this.lb_ClientEmail.Name = "lb_ClientEmail";
+            this.lb_ClientEmail.Size = new System.Drawing.Size(70, 31);
+            this.lb_ClientEmail.TabIndex = 0;
+            this.lb_ClientEmail.Text = "Email";
+            // 
+            // tb_ClientEmail
+            // 
+            this.tb_ClientEmail.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.tb_ClientEmail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(185)))), ((int)(((byte)(255)))));
+            this.tb_ClientEmail.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tb_ClientEmail.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.tb_ClientEmail.Location = new System.Drawing.Point(199, 138);
+            this.tb_ClientEmail.Multiline = true;
+            this.tb_ClientEmail.Name = "tb_ClientEmail";
+            this.tb_ClientEmail.Size = new System.Drawing.Size(275, 31);
+            this.tb_ClientEmail.TabIndex = 2;
+            this.tb_ClientEmail.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lb_ClientName
             // 
@@ -186,35 +303,11 @@ namespace PBL3REAL.View
             this.lb_ClientName.AutoSize = true;
             this.lb_ClientName.BackColor = System.Drawing.Color.Transparent;
             this.lb_ClientName.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lb_ClientName.Location = new System.Drawing.Point(3, 4);
+            this.lb_ClientName.Location = new System.Drawing.Point(3, 94);
             this.lb_ClientName.Name = "lb_ClientName";
             this.lb_ClientName.Size = new System.Drawing.Size(173, 31);
             this.lb_ClientName.TabIndex = 0;
             this.lb_ClientName.Text = "Tên khách hàng";
-            // 
-            // lb_ClientAddress
-            // 
-            this.lb_ClientAddress.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lb_ClientAddress.AutoSize = true;
-            this.lb_ClientAddress.BackColor = System.Drawing.Color.Transparent;
-            this.lb_ClientAddress.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lb_ClientAddress.Location = new System.Drawing.Point(3, 97);
-            this.lb_ClientAddress.Name = "lb_ClientAddress";
-            this.lb_ClientAddress.Size = new System.Drawing.Size(84, 31);
-            this.lb_ClientAddress.TabIndex = 0;
-            this.lb_ClientAddress.Text = "Địa chỉ";
-            // 
-            // lb_ClientContact
-            // 
-            this.lb_ClientContact.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lb_ClientContact.AutoSize = true;
-            this.lb_ClientContact.BackColor = System.Drawing.Color.Transparent;
-            this.lb_ClientContact.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lb_ClientContact.Location = new System.Drawing.Point(3, 190);
-            this.lb_ClientContact.Name = "lb_ClientContact";
-            this.lb_ClientContact.Size = new System.Drawing.Size(87, 31);
-            this.lb_ClientContact.TabIndex = 0;
-            this.lb_ClientContact.Text = "Liên hệ";
             // 
             // grbx_PeriodTime
             // 
@@ -223,7 +316,7 @@ namespace PBL3REAL.View
             this.grbx_PeriodTime.Controls.Add(this.tbllaypn_FromTo);
             this.grbx_PeriodTime.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.grbx_PeriodTime.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.grbx_PeriodTime.Location = new System.Drawing.Point(417, 60);
+            this.grbx_PeriodTime.Location = new System.Drawing.Point(591, 60);
             this.grbx_PeriodTime.Name = "grbx_PeriodTime";
             this.grbx_PeriodTime.Size = new System.Drawing.Size(538, 262);
             this.grbx_PeriodTime.TabIndex = 0;
@@ -379,28 +472,9 @@ namespace PBL3REAL.View
             this.lb_From.TabIndex = 0;
             this.lb_From.Text = "Từ ngày";
             // 
-            // dgv
-            // 
-            this.dgv.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.dgv.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(190)))), ((int)(((byte)(195)))));
-            this.dgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgv.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.dgv.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv.ColumnHeadersVisible = false;
-            this.dgv.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(185)))), ((int)(((byte)(255)))));
-            this.dgv.Location = new System.Drawing.Point(21, 338);
-            this.dgv.Name = "dgv";
-            this.dgv.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.dgv.RowHeadersWidth = 51;
-            this.dgv.RowTemplate.Height = 29;
-            this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(875, 219);
-            this.dgv.TabIndex = 0;
-            // 
             // tbllaypn_ControlButtons
             // 
-            this.tbllaypn_ControlButtons.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.tbllaypn_ControlButtons.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbllaypn_ControlButtons.ColumnCount = 5;
             this.tbllaypn_ControlButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tbllaypn_ControlButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
@@ -412,7 +486,7 @@ namespace PBL3REAL.View
             this.tbllaypn_ControlButtons.Controls.Add(this.btn_Cancel, 2, 0);
             this.tbllaypn_ControlButtons.Controls.Add(this.btn_OK, 0, 0);
             this.tbllaypn_ControlButtons.Controls.Add(this.btn_Reset, 1, 0);
-            this.tbllaypn_ControlButtons.Location = new System.Drawing.Point(235, 862);
+            this.tbllaypn_ControlButtons.Location = new System.Drawing.Point(335, 862);
             this.tbllaypn_ControlButtons.Name = "tbllaypn_ControlButtons";
             this.tbllaypn_ControlButtons.RowCount = 1;
             this.tbllaypn_ControlButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -499,7 +573,7 @@ namespace PBL3REAL.View
             // picbx_Delete
             // 
             this.picbx_Delete.Image = global::PBL3REAL.Properties.Resources.minus_fluent_color_48px;
-            this.picbx_Delete.Location = new System.Drawing.Point(902, 333);
+            this.picbx_Delete.Location = new System.Drawing.Point(1072, 328);
             this.picbx_Delete.Name = "picbx_Delete";
             this.picbx_Delete.Size = new System.Drawing.Size(47, 45);
             this.picbx_Delete.TabIndex = 3;
@@ -513,7 +587,7 @@ namespace PBL3REAL.View
             this.grbx_BookingInfo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.grbx_BookingInfo.Location = new System.Drawing.Point(12, 567);
             this.grbx_BookingInfo.Name = "grbx_BookingInfo";
-            this.grbx_BookingInfo.Size = new System.Drawing.Size(943, 250);
+            this.grbx_BookingInfo.Size = new System.Drawing.Size(1107, 250);
             this.grbx_BookingInfo.TabIndex = 0;
             this.grbx_BookingInfo.TabStop = false;
             this.grbx_BookingInfo.Text = "Thông tin Booking";
@@ -535,14 +609,14 @@ namespace PBL3REAL.View
             this.tbllaypn_BookingInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tbllaypn_BookingInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tbllaypn_BookingInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tbllaypn_BookingInfo.Size = new System.Drawing.Size(905, 211);
+            this.tbllaypn_BookingInfo.Size = new System.Drawing.Size(1083, 211);
             this.tbllaypn_BookingInfo.TabIndex = 0;
             // 
             // fllaypn_Note
             // 
             this.fllaypn_Note.Controls.Add(this.lb_Note);
             this.fllaypn_Note.Controls.Add(this.tb_Note);
-            this.fllaypn_Note.Location = new System.Drawing.Point(455, 143);
+            this.fllaypn_Note.Location = new System.Drawing.Point(544, 143);
             this.fllaypn_Note.Name = "fllaypn_Note";
             this.fllaypn_Note.Size = new System.Drawing.Size(379, 65);
             this.fllaypn_Note.TabIndex = 0;
@@ -563,7 +637,6 @@ namespace PBL3REAL.View
             this.tb_Note.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.tb_Note.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(185)))), ((int)(((byte)(255)))));
             this.tb_Note.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tb_Note.Enabled = false;
             this.tb_Note.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.tb_Note.Location = new System.Drawing.Point(118, 3);
             this.tb_Note.Multiline = true;
@@ -576,7 +649,7 @@ namespace PBL3REAL.View
             // 
             this.fllaypn_Total.Controls.Add(this.lb_Total);
             this.fllaypn_Total.Controls.Add(this.tb_Total);
-            this.fllaypn_Total.Location = new System.Drawing.Point(455, 73);
+            this.fllaypn_Total.Location = new System.Drawing.Point(544, 73);
             this.fllaypn_Total.Name = "fllaypn_Total";
             this.fllaypn_Total.Size = new System.Drawing.Size(379, 35);
             this.fllaypn_Total.TabIndex = 0;
@@ -678,7 +751,7 @@ namespace PBL3REAL.View
             // 
             this.fllaypn_DueDate.Controls.Add(this.lb_DueDate);
             this.fllaypn_DueDate.Controls.Add(this.tb_DueDate);
-            this.fllaypn_DueDate.Location = new System.Drawing.Point(455, 3);
+            this.fllaypn_DueDate.Location = new System.Drawing.Point(544, 3);
             this.fllaypn_DueDate.Name = "fllaypn_DueDate";
             this.fllaypn_DueDate.Size = new System.Drawing.Size(379, 35);
             this.fllaypn_DueDate.TabIndex = 0;
@@ -742,21 +815,65 @@ namespace PBL3REAL.View
             "Completed",
             "Processed",
             "Checkin",
-            "Paid"});
+            "Payed"});
             this.cbb_Status.Location = new System.Drawing.Point(127, 3);
             this.cbb_Status.Name = "cbb_Status";
             this.cbb_Status.Size = new System.Drawing.Size(247, 39);
             this.cbb_Status.TabIndex = 8;
+            // 
+            // dgv
+            // 
+            this.dgv.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgv.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgv.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(190)))), ((int)(((byte)(195)))));
+            this.dgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgv.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.dgv.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dgv.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dgv.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(185)))), ((int)(((byte)(255)))));
+            this.dgv.Location = new System.Drawing.Point(12, 328);
+            this.dgv.Name = "dgv";
+            this.dgv.ReadOnly = true;
+            this.dgv.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.dgv.RowHeadersVisible = false;
+            this.dgv.RowHeadersWidth = 51;
+            this.dgv.RowTemplate.Height = 29;
+            this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv.Size = new System.Drawing.Size(1058, 233);
+            this.dgv.TabIndex = 0;
+            // 
+            // tb_ClientSearch
+            // 
+            this.tb_ClientSearch.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.tb_ClientSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(185)))), ((int)(((byte)(255)))));
+            this.tb_ClientSearch.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tb_ClientSearch.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.tb_ClientSearch.Location = new System.Drawing.Point(199, 50);
+            this.tb_ClientSearch.Multiline = true;
+            this.tb_ClientSearch.Name = "tb_ClientSearch";
+            this.tb_ClientSearch.Size = new System.Drawing.Size(275, 31);
+            this.tb_ClientSearch.TabIndex = 0;
+            this.tb_ClientSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Form_Booking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(230)))), ((int)(((byte)(233)))));
-            this.ClientSize = new System.Drawing.Size(965, 909);
+            this.ClientSize = new System.Drawing.Size(1132, 909);
+            this.Controls.Add(this.dgv);
             this.Controls.Add(this.grbx_BookingInfo);
             this.Controls.Add(this.tbllaypn_ControlButtons);
-            this.Controls.Add(this.dgv);
             this.Controls.Add(this.grbx_PeriodTime);
             this.Controls.Add(this.grbx_ClientInfo);
             this.Controls.Add(this.lb_Header);
@@ -767,8 +884,11 @@ namespace PBL3REAL.View
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Đặt phòng";
             this.grbx_ClientInfo.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picbx_ClientSearch)).EndInit();
             this.tbllaypn_ClientInfo.ResumeLayout(false);
             this.tbllaypn_ClientInfo.PerformLayout();
+            this.tbllaypn_ClientType.ResumeLayout(false);
+            this.tbllaypn_ClientType.PerformLayout();
             this.grbx_PeriodTime.ResumeLayout(false);
             this.tbllaypn_RoomList.ResumeLayout(false);
             this.tbllaypn_RoomList.PerformLayout();
@@ -776,7 +896,6 @@ namespace PBL3REAL.View
             ((System.ComponentModel.ISupportInitialize)(this.picbx_Enter)).EndInit();
             this.tbllaypn_FromTo.ResumeLayout(false);
             this.tbllaypn_FromTo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.tbllaypn_ControlButtons.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picbx_Delete)).EndInit();
             this.grbx_BookingInfo.ResumeLayout(false);
@@ -792,6 +911,7 @@ namespace PBL3REAL.View
             this.fllaypn_DueDate.ResumeLayout(false);
             this.fllaypn_DueDate.PerformLayout();
             this.fllaypn_Status.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -803,11 +923,10 @@ namespace PBL3REAL.View
         private System.Windows.Forms.GroupBox grbx_ClientInfo;
         private System.Windows.Forms.TableLayoutPanel tbllaypn_ClientInfo;
         private System.Windows.Forms.Label lb_ClientName;
-        private System.Windows.Forms.Label lb_ClientAddress;
-        private System.Windows.Forms.Label lb_ClientContact;
-        private System.Windows.Forms.TextBox tb_ClientName;
-        private System.Windows.Forms.TextBox tb_ClientContact;
-        private System.Windows.Forms.TextBox tb_ClientAddress;
+        private System.Windows.Forms.Label lb_ClientEmail;
+        private System.Windows.Forms.Label lb_ClientPhone;
+        private System.Windows.Forms.TextBox tb_ClientPhone;
+        private System.Windows.Forms.TextBox tb_ClientEmail;
         private System.Windows.Forms.GroupBox grbx_PeriodTime;
         private System.Windows.Forms.TableLayoutPanel tbllaypn_FromTo;
         private System.Windows.Forms.Label lb_To;
@@ -821,7 +940,6 @@ namespace PBL3REAL.View
         private System.Windows.Forms.ComboBox cbb_Room;
         private System.Windows.Forms.PictureBox picbx_Add;
         private System.Windows.Forms.PictureBox picbx_Enter;
-        private System.Windows.Forms.DataGridView dgv;
         private System.Windows.Forms.TableLayoutPanel tbllaypn_ControlButtons;
         private System.Windows.Forms.Button btn_Cancel;
         private System.Windows.Forms.Button btn_OK;
@@ -849,5 +967,14 @@ namespace PBL3REAL.View
         private System.Windows.Forms.FlowLayoutPanel fllaypn_Status;
         private System.Windows.Forms.Label lb_Status;
         private System.Windows.Forms.ComboBox cbb_Status;
+        private System.Windows.Forms.Label lb_ClientSearch;
+        private System.Windows.Forms.Label lb_ClientType;
+        private System.Windows.Forms.PictureBox picbx_ClientSearch;
+        private System.Windows.Forms.TableLayoutPanel tbllaypn_ClientType;
+        private System.Windows.Forms.RadioButton rbtn_OldClient;
+        private System.Windows.Forms.RadioButton rbtn_NewClient;
+        private System.Windows.Forms.TextBox tb_ClientName;
+        private System.Windows.Forms.DataGridView dgv;
+        private System.Windows.Forms.TextBox tb_ClientSearch;
     }
 }

@@ -62,20 +62,6 @@ namespace PBL3REAL.View
                         break;
                     }
                 }
-                //if (role == 1 || role == 2 || role == 3)
-                //{
-                //    Form_Staff f = new Form_Staff(QLUserBLL.stoUser.IdUser,role);
-                //    this.Hide();
-                //    f.ShowDialog();
-                //    this.Show();
-                //}    
-                //else
-                //{
-                //    Form_Home_Admin f = new Form_Home_Admin(QLUserBLL.stoUser.IdUser, role);
-                //    this.Hide();
-                //    f.ShowDialog();
-                //    this.Show();
-                //}
             }
         }
         private void btn_Logout_Click(object sender, EventArgs e)

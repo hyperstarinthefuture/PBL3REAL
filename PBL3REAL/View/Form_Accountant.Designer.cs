@@ -48,24 +48,31 @@ namespace PBL3REAL.View
             this.lb_InvoiceSearch = new System.Windows.Forms.Label();
             this.lb_InvoiceSort = new System.Windows.Forms.Label();
             this.tabPage_StatAnalyze = new System.Windows.Forms.TabPage();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.grbx_AnalyzeOption = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.grbx_StatisticOption = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.grbx_StatAnalyze = new System.Windows.Forms.GroupBox();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.tbllaypn_ControlBar = new System.Windows.Forms.TableLayoutPanel();
             this.btn_Reset = new System.Windows.Forms.Button();
             this.btn_OK = new System.Windows.Forms.Button();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.tbllaypn_DataOption = new System.Windows.Forms.TableLayoutPanel();
+            this.tbllaypn_ActionOption = new System.Windows.Forms.TableLayoutPanel();
+            this.chkbx_Analyze = new System.Windows.Forms.CheckBox();
+            this.chkbx_Statistic = new System.Windows.Forms.CheckBox();
+            this.lb_DataType = new System.Windows.Forms.Label();
+            this.lb_PeriodTime = new System.Windows.Forms.Label();
+            this.lb_From = new System.Windows.Forms.Label();
+            this.lb_To = new System.Windows.Forms.Label();
+            this.lb_ActionOption = new System.Windows.Forms.Label();
+            this.dtp_From = new System.Windows.Forms.DateTimePicker();
+            this.dtp_To = new System.Windows.Forms.DateTimePicker();
+            this.cbb_DataType = new System.Windows.Forms.ComboBox();
+            this.cbb_PeriodTime = new System.Windows.Forms.ComboBox();
             this.tabControl_Accountant.SuspendLayout();
             this.tabPage_General.SuspendLayout();
             this.tabPage_Invoice.SuspendLayout();
@@ -75,13 +82,14 @@ namespace PBL3REAL.View
             ((System.ComponentModel.ISupportInitialize)(this.picbx_InvoiceSearch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picbx_InvoiceSort)).BeginInit();
             this.tabPage_StatAnalyze.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.grbx_AnalyzeOption.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.grbx_StatisticOption.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.grbx_StatAnalyze.SuspendLayout();
-            this.tableLayoutPanel4.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.tbllaypn_ControlBar.SuspendLayout();
+            this.tbllaypn_DataOption.SuspendLayout();
+            this.tbllaypn_ActionOption.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl_Accountant
@@ -230,7 +238,7 @@ namespace PBL3REAL.View
             this.tbllaypn_Invoice.ColumnCount = 3;
             this.tbllaypn_Invoice.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.30407F));
             this.tbllaypn_Invoice.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 62.69593F));
-            this.tbllaypn_Invoice.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tbllaypn_Invoice.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 97F));
             this.tbllaypn_Invoice.Controls.Add(this.picbx_InvoiceSearch, 2, 1);
             this.tbllaypn_Invoice.Controls.Add(this.picbx_InvoiceSort, 2, 0);
             this.tbllaypn_Invoice.Controls.Add(this.cbb_InvoiceSort, 1, 0);
@@ -248,7 +256,7 @@ namespace PBL3REAL.View
             // picbx_InvoiceSearch
             // 
             this.picbx_InvoiceSearch.Image = global::PBL3REAL.Properties.Resources.search_fluent_color_48px;
-            this.picbx_InvoiceSearch.Location = new System.Drawing.Point(308, 58);
+            this.picbx_InvoiceSearch.Location = new System.Drawing.Point(291, 58);
             this.picbx_InvoiceSearch.Name = "picbx_InvoiceSearch";
             this.picbx_InvoiceSearch.Size = new System.Drawing.Size(47, 48);
             this.picbx_InvoiceSearch.TabIndex = 10;
@@ -257,7 +265,7 @@ namespace PBL3REAL.View
             // picbx_InvoiceSort
             // 
             this.picbx_InvoiceSort.Image = global::PBL3REAL.Properties.Resources.filter_fluent_color_48px;
-            this.picbx_InvoiceSort.Location = new System.Drawing.Point(308, 3);
+            this.picbx_InvoiceSort.Location = new System.Drawing.Point(291, 3);
             this.picbx_InvoiceSort.Name = "picbx_InvoiceSort";
             this.picbx_InvoiceSort.Size = new System.Drawing.Size(47, 48);
             this.picbx_InvoiceSort.TabIndex = 9;
@@ -271,9 +279,9 @@ namespace PBL3REAL.View
             this.cbb_InvoiceSort.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbb_InvoiceSort.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cbb_InvoiceSort.FormattingEnabled = true;
-            this.cbb_InvoiceSort.Location = new System.Drawing.Point(117, 3);
+            this.cbb_InvoiceSort.Location = new System.Drawing.Point(110, 3);
             this.cbb_InvoiceSort.Name = "cbb_InvoiceSort";
-            this.cbb_InvoiceSort.Size = new System.Drawing.Size(185, 39);
+            this.cbb_InvoiceSort.Size = new System.Drawing.Size(175, 39);
             this.cbb_InvoiceSort.TabIndex = 0;
             // 
             // tb_InvoiceSearch
@@ -282,9 +290,9 @@ namespace PBL3REAL.View
             this.tb_InvoiceSearch.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tb_InvoiceSearch.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_InvoiceSearch.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tb_InvoiceSearch.Location = new System.Drawing.Point(117, 58);
+            this.tb_InvoiceSearch.Location = new System.Drawing.Point(110, 58);
             this.tb_InvoiceSearch.Name = "tb_InvoiceSearch";
-            this.tb_InvoiceSearch.Size = new System.Drawing.Size(185, 31);
+            this.tb_InvoiceSearch.Size = new System.Drawing.Size(175, 31);
             this.tb_InvoiceSearch.TabIndex = 0;
             // 
             // lb_InvoiceSearch
@@ -293,7 +301,7 @@ namespace PBL3REAL.View
             this.lb_InvoiceSearch.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lb_InvoiceSearch.Location = new System.Drawing.Point(3, 55);
             this.lb_InvoiceSearch.Name = "lb_InvoiceSearch";
-            this.lb_InvoiceSearch.Size = new System.Drawing.Size(108, 56);
+            this.lb_InvoiceSearch.Size = new System.Drawing.Size(101, 56);
             this.lb_InvoiceSearch.TabIndex = 0;
             this.lb_InvoiceSearch.Text = "Tìm kiếm";
             // 
@@ -303,14 +311,14 @@ namespace PBL3REAL.View
             this.lb_InvoiceSort.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lb_InvoiceSort.Location = new System.Drawing.Point(3, 0);
             this.lb_InvoiceSort.Name = "lb_InvoiceSort";
-            this.lb_InvoiceSort.Size = new System.Drawing.Size(108, 55);
+            this.lb_InvoiceSort.Size = new System.Drawing.Size(101, 55);
             this.lb_InvoiceSort.TabIndex = 0;
             this.lb_InvoiceSort.Text = "Sắp xếp theo";
             // 
             // tabPage_StatAnalyze
             // 
-            this.tabPage_StatAnalyze.Controls.Add(this.groupBox2);
-            this.tabPage_StatAnalyze.Controls.Add(this.groupBox1);
+            this.tabPage_StatAnalyze.Controls.Add(this.grbx_AnalyzeOption);
+            this.tabPage_StatAnalyze.Controls.Add(this.grbx_StatisticOption);
             this.tabPage_StatAnalyze.Controls.Add(this.grbx_StatAnalyze);
             this.tabPage_StatAnalyze.Location = new System.Drawing.Point(4, 37);
             this.tabPage_StatAnalyze.Name = "tabPage_StatAnalyze";
@@ -319,15 +327,15 @@ namespace PBL3REAL.View
             this.tabPage_StatAnalyze.Text = "Thống kê & Phân tích số liệu";
             this.tabPage_StatAnalyze.UseVisualStyleBackColor = true;
             // 
-            // groupBox2
+            // grbx_AnalyzeOption
             // 
-            this.groupBox2.Controls.Add(this.tableLayoutPanel3);
-            this.groupBox2.Location = new System.Drawing.Point(534, 316);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(435, 339);
-            this.groupBox2.TabIndex = 2;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Tùy chọn phân tích";
+            this.grbx_AnalyzeOption.Controls.Add(this.tableLayoutPanel3);
+            this.grbx_AnalyzeOption.Location = new System.Drawing.Point(534, 316);
+            this.grbx_AnalyzeOption.Name = "grbx_AnalyzeOption";
+            this.grbx_AnalyzeOption.Size = new System.Drawing.Size(435, 339);
+            this.grbx_AnalyzeOption.TabIndex = 0;
+            this.grbx_AnalyzeOption.TabStop = false;
+            this.grbx_AnalyzeOption.Text = "Tùy chọn phân tích";
             // 
             // tableLayoutPanel3
             // 
@@ -364,15 +372,15 @@ namespace PBL3REAL.View
             this.label9.TabIndex = 3;
             this.label9.Text = "Phân tích";
             // 
-            // groupBox1
+            // grbx_StatisticOption
             // 
-            this.groupBox1.Controls.Add(this.tableLayoutPanel2);
-            this.groupBox1.Location = new System.Drawing.Point(8, 316);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(435, 339);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Tùy chọn thống kê";
+            this.grbx_StatisticOption.Controls.Add(this.tableLayoutPanel2);
+            this.grbx_StatisticOption.Location = new System.Drawing.Point(8, 316);
+            this.grbx_StatisticOption.Name = "grbx_StatisticOption";
+            this.grbx_StatisticOption.Size = new System.Drawing.Size(435, 339);
+            this.grbx_StatisticOption.TabIndex = 0;
+            this.grbx_StatisticOption.TabStop = false;
+            this.grbx_StatisticOption.Text = "Tùy chọn thống kê";
             // 
             // tableLayoutPanel2
             // 
@@ -411,8 +419,8 @@ namespace PBL3REAL.View
             // 
             // grbx_StatAnalyze
             // 
-            this.grbx_StatAnalyze.Controls.Add(this.tableLayoutPanel4);
-            this.grbx_StatAnalyze.Controls.Add(this.tableLayoutPanel1);
+            this.grbx_StatAnalyze.Controls.Add(this.tbllaypn_ControlBar);
+            this.grbx_StatAnalyze.Controls.Add(this.tbllaypn_DataOption);
             this.grbx_StatAnalyze.Location = new System.Drawing.Point(8, 3);
             this.grbx_StatAnalyze.Name = "grbx_StatAnalyze";
             this.grbx_StatAnalyze.Size = new System.Drawing.Size(961, 298);
@@ -420,20 +428,20 @@ namespace PBL3REAL.View
             this.grbx_StatAnalyze.TabStop = false;
             this.grbx_StatAnalyze.Text = "Tùy chọn dữ liệu";
             // 
-            // tableLayoutPanel4
+            // tbllaypn_ControlBar
             // 
-            this.tableLayoutPanel4.ColumnCount = 1;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Controls.Add(this.btn_Reset, 0, 1);
-            this.tableLayoutPanel4.Controls.Add(this.btn_OK, 0, 0);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(825, 112);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 2;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(110, 130);
-            this.tableLayoutPanel4.TabIndex = 1;
-            this.tableLayoutPanel4.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel4_Paint);
+            this.tbllaypn_ControlBar.ColumnCount = 1;
+            this.tbllaypn_ControlBar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tbllaypn_ControlBar.Controls.Add(this.btn_Reset, 0, 1);
+            this.tbllaypn_ControlBar.Controls.Add(this.btn_OK, 0, 0);
+            this.tbllaypn_ControlBar.Location = new System.Drawing.Point(825, 112);
+            this.tbllaypn_ControlBar.Name = "tbllaypn_ControlBar";
+            this.tbllaypn_ControlBar.RowCount = 2;
+            this.tbllaypn_ControlBar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tbllaypn_ControlBar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tbllaypn_ControlBar.Size = new System.Drawing.Size(110, 130);
+            this.tbllaypn_ControlBar.TabIndex = 0;
+            this.tbllaypn_ControlBar.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel4_Paint);
             // 
             // btn_Reset
             // 
@@ -446,7 +454,7 @@ namespace PBL3REAL.View
             this.btn_Reset.Margin = new System.Windows.Forms.Padding(0);
             this.btn_Reset.Name = "btn_Reset";
             this.btn_Reset.Size = new System.Drawing.Size(89, 40);
-            this.btn_Reset.TabIndex = 2;
+            this.btn_Reset.TabIndex = 0;
             this.btn_Reset.Text = "Reset";
             this.btn_Reset.UseVisualStyleBackColor = false;
             // 
@@ -461,81 +469,165 @@ namespace PBL3REAL.View
             this.btn_OK.Margin = new System.Windows.Forms.Padding(0);
             this.btn_OK.Name = "btn_OK";
             this.btn_OK.Size = new System.Drawing.Size(89, 40);
-            this.btn_OK.TabIndex = 1;
+            this.btn_OK.TabIndex = 0;
             this.btn_OK.Text = "OK";
             this.btn_OK.UseVisualStyleBackColor = false;
             this.btn_OK.Click += new System.EventHandler(this.btn_OK_Click);
             // 
-            // tableLayoutPanel1
+            // tbllaypn_DataOption
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 27.02078F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 72.97922F));
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.label5, 0, 4);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(6, 33);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 5;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(775, 257);
-            this.tableLayoutPanel1.TabIndex = 0;
+            this.tbllaypn_DataOption.ColumnCount = 2;
+            this.tbllaypn_DataOption.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 27.02078F));
+            this.tbllaypn_DataOption.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 72.97922F));
+            this.tbllaypn_DataOption.Controls.Add(this.tbllaypn_ActionOption, 1, 4);
+            this.tbllaypn_DataOption.Controls.Add(this.lb_DataType, 0, 0);
+            this.tbllaypn_DataOption.Controls.Add(this.lb_PeriodTime, 0, 1);
+            this.tbllaypn_DataOption.Controls.Add(this.lb_From, 0, 2);
+            this.tbllaypn_DataOption.Controls.Add(this.lb_To, 0, 3);
+            this.tbllaypn_DataOption.Controls.Add(this.lb_ActionOption, 0, 4);
+            this.tbllaypn_DataOption.Controls.Add(this.dtp_From, 1, 2);
+            this.tbllaypn_DataOption.Controls.Add(this.dtp_To, 1, 3);
+            this.tbllaypn_DataOption.Controls.Add(this.cbb_DataType, 1, 0);
+            this.tbllaypn_DataOption.Controls.Add(this.cbb_PeriodTime, 1, 1);
+            this.tbllaypn_DataOption.Location = new System.Drawing.Point(6, 33);
+            this.tbllaypn_DataOption.Name = "tbllaypn_DataOption";
+            this.tbllaypn_DataOption.RowCount = 5;
+            this.tbllaypn_DataOption.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tbllaypn_DataOption.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tbllaypn_DataOption.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tbllaypn_DataOption.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tbllaypn_DataOption.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tbllaypn_DataOption.Size = new System.Drawing.Size(775, 257);
+            this.tbllaypn_DataOption.TabIndex = 0;
             // 
-            // label1
+            // tbllaypn_ActionOption
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(187, 31);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Chọn loại dữ liệu";
+            this.tbllaypn_ActionOption.ColumnCount = 2;
+            this.tbllaypn_ActionOption.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tbllaypn_ActionOption.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tbllaypn_ActionOption.Controls.Add(this.chkbx_Analyze, 1, 0);
+            this.tbllaypn_ActionOption.Controls.Add(this.chkbx_Statistic, 0, 0);
+            this.tbllaypn_ActionOption.Location = new System.Drawing.Point(212, 207);
+            this.tbllaypn_ActionOption.Name = "tbllaypn_ActionOption";
+            this.tbllaypn_ActionOption.RowCount = 1;
+            this.tbllaypn_ActionOption.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tbllaypn_ActionOption.Size = new System.Drawing.Size(331, 47);
+            this.tbllaypn_ActionOption.TabIndex = 0;
             // 
-            // label2
+            // chkbx_Analyze
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(3, 51);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(193, 31);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Phạm vi thời gian";
+            this.chkbx_Analyze.AutoSize = true;
+            this.chkbx_Analyze.Location = new System.Drawing.Point(168, 3);
+            this.chkbx_Analyze.Name = "chkbx_Analyze";
+            this.chkbx_Analyze.Size = new System.Drawing.Size(114, 32);
+            this.chkbx_Analyze.TabIndex = 0;
+            this.chkbx_Analyze.Text = "Phân tích";
+            this.chkbx_Analyze.UseVisualStyleBackColor = true;
             // 
-            // label3
+            // chkbx_Statistic
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(3, 102);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(96, 31);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Từ ngày";
+            this.chkbx_Statistic.AutoSize = true;
+            this.chkbx_Statistic.Location = new System.Drawing.Point(3, 3);
+            this.chkbx_Statistic.Name = "chkbx_Statistic";
+            this.chkbx_Statistic.Size = new System.Drawing.Size(115, 32);
+            this.chkbx_Statistic.TabIndex = 0;
+            this.chkbx_Statistic.Text = "Thống kê";
+            this.chkbx_Statistic.UseVisualStyleBackColor = true;
             // 
-            // label4
+            // lb_DataType
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(3, 153);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(111, 31);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Đến ngày";
+            this.lb_DataType.AutoSize = true;
+            this.lb_DataType.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lb_DataType.Location = new System.Drawing.Point(3, 0);
+            this.lb_DataType.Name = "lb_DataType";
+            this.lb_DataType.Size = new System.Drawing.Size(187, 31);
+            this.lb_DataType.TabIndex = 0;
+            this.lb_DataType.Text = "Chọn loại dữ liệu";
             // 
-            // label5
+            // lb_PeriodTime
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(3, 204);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(184, 31);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Chọn hành động";
+            this.lb_PeriodTime.AutoSize = true;
+            this.lb_PeriodTime.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lb_PeriodTime.Location = new System.Drawing.Point(3, 51);
+            this.lb_PeriodTime.Name = "lb_PeriodTime";
+            this.lb_PeriodTime.Size = new System.Drawing.Size(193, 31);
+            this.lb_PeriodTime.TabIndex = 0;
+            this.lb_PeriodTime.Text = "Phạm vi thời gian";
+            // 
+            // lb_From
+            // 
+            this.lb_From.AutoSize = true;
+            this.lb_From.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lb_From.Location = new System.Drawing.Point(3, 102);
+            this.lb_From.Name = "lb_From";
+            this.lb_From.Size = new System.Drawing.Size(96, 31);
+            this.lb_From.TabIndex = 0;
+            this.lb_From.Text = "Từ ngày";
+            // 
+            // lb_To
+            // 
+            this.lb_To.AutoSize = true;
+            this.lb_To.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lb_To.Location = new System.Drawing.Point(3, 153);
+            this.lb_To.Name = "lb_To";
+            this.lb_To.Size = new System.Drawing.Size(111, 31);
+            this.lb_To.TabIndex = 0;
+            this.lb_To.Text = "Đến ngày";
+            // 
+            // lb_ActionOption
+            // 
+            this.lb_ActionOption.AutoSize = true;
+            this.lb_ActionOption.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lb_ActionOption.Location = new System.Drawing.Point(3, 204);
+            this.lb_ActionOption.Name = "lb_ActionOption";
+            this.lb_ActionOption.Size = new System.Drawing.Size(184, 31);
+            this.lb_ActionOption.TabIndex = 0;
+            this.lb_ActionOption.Text = "Chọn hành động";
+            // 
+            // dtp_From
+            // 
+            this.dtp_From.Location = new System.Drawing.Point(212, 105);
+            this.dtp_From.Name = "dtp_From";
+            this.dtp_From.Size = new System.Drawing.Size(331, 34);
+            this.dtp_From.TabIndex = 3;
+            // 
+            // dtp_To
+            // 
+            this.dtp_To.Location = new System.Drawing.Point(212, 156);
+            this.dtp_To.Name = "dtp_To";
+            this.dtp_To.Size = new System.Drawing.Size(331, 34);
+            this.dtp_To.TabIndex = 4;
+            // 
+            // cbb_DataType
+            // 
+            this.cbb_DataType.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cbb_DataType.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(185)))), ((int)(((byte)(255)))));
+            this.cbb_DataType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbb_DataType.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbb_DataType.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cbb_DataType.FormattingEnabled = true;
+            this.cbb_DataType.Location = new System.Drawing.Point(212, 7);
+            this.cbb_DataType.Name = "cbb_DataType";
+            this.cbb_DataType.Size = new System.Drawing.Size(331, 36);
+            this.cbb_DataType.TabIndex = 1;
+            // 
+            // cbb_PeriodTime
+            // 
+            this.cbb_PeriodTime.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cbb_PeriodTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(185)))), ((int)(((byte)(255)))));
+            this.cbb_PeriodTime.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbb_PeriodTime.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbb_PeriodTime.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cbb_PeriodTime.FormattingEnabled = true;
+            this.cbb_PeriodTime.Items.AddRange(new object[] {
+            "7 ngày gần đây",
+            "30 ngày gần đây",
+            "Tùy chỉnh"});
+            this.cbb_PeriodTime.Location = new System.Drawing.Point(212, 58);
+            this.cbb_PeriodTime.Name = "cbb_PeriodTime";
+            this.cbb_PeriodTime.Size = new System.Drawing.Size(331, 36);
+            this.cbb_PeriodTime.TabIndex = 2;
+            this.cbb_PeriodTime.SelectedIndexChanged += new System.EventHandler(this.cbb_PeriodTime_SelectedIndexChanged);
             // 
             // Form_Accountant
             // 
@@ -558,16 +650,18 @@ namespace PBL3REAL.View
             ((System.ComponentModel.ISupportInitialize)(this.picbx_InvoiceSearch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picbx_InvoiceSort)).EndInit();
             this.tabPage_StatAnalyze.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
+            this.grbx_AnalyzeOption.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
+            this.grbx_StatisticOption.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             this.grbx_StatAnalyze.ResumeLayout(false);
-            this.tableLayoutPanel4.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            this.tbllaypn_ControlBar.ResumeLayout(false);
+            this.tbllaypn_DataOption.ResumeLayout(false);
+            this.tbllaypn_DataOption.PerformLayout();
+            this.tbllaypn_ActionOption.ResumeLayout(false);
+            this.tbllaypn_ActionOption.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -592,23 +686,30 @@ namespace PBL3REAL.View
         private System.Windows.Forms.Label lb_InvoiceSort;
         private System.Windows.Forms.TabPage tabPage_StatAnalyze;
         private System.Windows.Forms.GroupBox grbx_StatAnalyze;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.TableLayoutPanel tbllaypn_DataOption;
+        private System.Windows.Forms.GroupBox grbx_AnalyzeOption;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox grbx_StatisticOption;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TableLayoutPanel tbllaypn_ControlBar;
+        private System.Windows.Forms.Label lb_DataType;
+        private System.Windows.Forms.Label lb_PeriodTime;
+        private System.Windows.Forms.Label lb_From;
+        private System.Windows.Forms.Label lb_To;
+        private System.Windows.Forms.Label lb_ActionOption;
         private System.Windows.Forms.Button btn_OK;
         private System.Windows.Forms.Button btn_Reset;
         private System.Windows.Forms.Button btn_Home;
+        private System.Windows.Forms.DateTimePicker dtp_From;
+        private System.Windows.Forms.DateTimePicker dtp_To;
+        private System.Windows.Forms.TableLayoutPanel tbllaypn_ActionOption;
+        private System.Windows.Forms.CheckBox chkbx_Analyze;
+        private System.Windows.Forms.CheckBox chkbx_Statistic;
+        private System.Windows.Forms.ComboBox cbb_DataType;
+        private System.Windows.Forms.ComboBox cbb_PeriodTime;
     }
 }

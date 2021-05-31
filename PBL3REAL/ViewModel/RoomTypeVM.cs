@@ -17,7 +17,7 @@ namespace HotelManagement.ViewModel
         public string RotyDescription { get; set; }
         public int RotyCurrentprice { get; set; }
         public int RotyCapacity { get; set; }
-
+        public bool RoTyActiveflag { get; set; }
         public string RotyCode { get; set; }
 
         /* public IDictionary<int, string> MapImgUrl { get; set; }*/

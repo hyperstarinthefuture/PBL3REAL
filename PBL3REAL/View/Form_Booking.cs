@@ -10,15 +10,18 @@ using PBL3REAL.ViewModel;
 using PBL3REAL.Extention;
 using HotelManagement.BBL.Implement;
 using HotelManagement.BLL.Implement;
+using HotelManagement.ViewModel;
 namespace PBL3REAL.View
 {
     public partial class Form_Booking : Form
     {
+        //Declaration
         private QLBookingBLL BookingBLL;
         private RoomTypeBLL roomTypeBLL;
         private RoomBLL roomBLL;
         private ClientBLL clientBLL;
         private int IDBook = 0;
+        private int price = 0;
         private BookingDetailVM detailVM;
         private List<SubBookingDetailVM> subBookings;
         private List<RoomVM> roomVMs;
@@ -28,17 +31,22 @@ namespace PBL3REAL.View
             InitializeComponent();
             BookingBLL = new QLBookingBLL();
             roomTypeBLL = new RoomTypeBLL();
+            roomBLL = new RoomBLL();
             clientBLL = new ClientBLL();
+            subBookings = new List<SubBookingDetailVM>();
+            roomVMs = new List<RoomVM>();
+            BookedRoomVMs = new List<RoomVM>();
             IDBook = IdBook;
             if (IdBook != 0)
             {
                 detailVM = BookingBLL.getDetail(IDBook);
-                LoadData(IdBook,Editable);
             }  
             else
             {
                 //Generate IdBook để add
+                LoadBookedRoomList();
             }
+            LoadData(IdBook, Editable);
             LoadRoomTypeList();
         }
         //Load Data Functions
@@ -50,7 +58,9 @@ namespace PBL3REAL.View
         }
         private void LoadBookedRoomList()
         {
-            dgv.DataSource = detailVM.ListSub;
+            //dgv.DataSource = detailVM.ListSub;
+            dgv.DataSource = null;
+            dgv.DataSource = subBookings;
         }
         private void LoadAvailableTempRoomList()
         {
@@ -61,7 +71,7 @@ namespace PBL3REAL.View
         }
         private void LoadAvailableRoomList(int IdRoomtype, DateTime fromDate, DateTime toDate)
         {
-            roomVMs = roomBLL.findAvailableRoom(IdRoomtype, fromDate, toDate);
+            roomVMs = roomBLL.findAvailableRoom(IdRoomtype, fromDate, toDate); //All price = 0 ????  + RoTyName = null ?
             LoadAvailableTempRoomList();
         }
         private void LoadData(int id, bool Edit)
@@ -71,16 +81,21 @@ namespace PBL3REAL.View
                 //Add new booking
                 tb_BookDate.Text = DateTime.Now.ToString();
                 tb_DueDate.Text = (DateTime.Now.AddDays(5)).ToString();
+                rbtn_NewClient.Checked = true;
+                rbtn_OldClient.Checked = false;
+                tb_ClientSearch.Enabled = false;
+                picbx_ClientSearch.Enabled = false;
             }
             else
             {
                 //View or Edit
-                //ClientVM temp3 = ClientBLL.
-                //tb_ClientName.Text = temp2.;
-                //tb_ClientAddress.Text = temp. ;
-                //tb_ClientContact.Text = ;
+                rbtn_OldClient.Checked = true;
+                tb_ClientName.Text = detailVM.clientVM.CliName;
+                tb_ClientEmail.Text = detailVM.clientVM.CliGmail;
+                tb_ClientPhone.Text = detailVM.clientVM.CliPhone;
                 dtp_From.Value = detailVM.BookCheckindate;
                 dtp_To.Value = detailVM.BookCheckoutdate;
+                foreach (SubBookingDetailVM item in detailVM.ListSub) { subBookings.Add(item); }
                 LoadBookedRoomList();
                 tb_BookDate.Text = detailVM.BookBookdate.ToString();
                 tb_DueDate.Text = detailVM.BookDuedate.ToString();
@@ -88,26 +103,43 @@ namespace PBL3REAL.View
                 tb_Total.Text = detailVM.BookTotalprice.ToString();
                 cbb_Status.Text = detailVM.BookStatus;
                 tb_Note.Text = detailVM.BookNote;
+                if (!Edit)
+                {
+                    grbx_ClientInfo.Enabled = false;
+                    grbx_PeriodTime.Enabled = false;
+                    grbx_BookingInfo.Enabled = false;
+                    picbx_Enter.Enabled = false;
+                    picbx_Add.Enabled = false;
+                    picbx_Delete.Enabled = false;
+                    btn_OK.Enabled = false;
+                    btn_Invoice.Enabled = false;
+                    btn_Checkin.Enabled = false;
+                    btn_Reset.Enabled = false;
+                }
+                else
+                {
+                    foreach (SubBookingDetailVM item in subBookings)
+                    {
+                        RoomDetailVM temproom = roomBLL.findByID(item.BoodetIdroom);
+                        BookedRoomVMs.Add(new RoomVM
+                        {
+                            IdRoom = temproom.IdRoom,
+                            RoomName = temproom.RoomName,
+                            RoomDescription = temproom.RoomDescription,
+                            RotyCurrentprice = temproom.RotyCurrentprice,
+                            RoTyName = temproom.RoTyName
+                        });
+                    }
+                }
             }
-            if (!Edit)
-            {
-                grbx_ClientInfo.Enabled = false;
-                grbx_PeriodTime.Enabled = false;
-                grbx_BookingInfo.Enabled = false;
-                picbx_Enter.Enabled = false;
-                picbx_Add.Enabled = false;
-                picbx_Delete.Enabled = false;
-                btn_OK.Enabled = false;
-                btn_Invoice.Enabled = false;
-                btn_Checkin.Enabled = false;
-                btn_Reset.Enabled = false;
-            }
+            cbb_Status.Enabled = false;
+            tb_Total.Enabled = false;
+            tb_Deposit.Enabled = false;
         }
         //Check Data Function
         private int CheckData()
         {
-            if (tb_ClientName.Text == "" || tb_ClientContact.Text == "" || tb_ClientAddress.Text == "" 
-                || tb_Deposit.Text == "" || cbb_Status.SelectedItem == null)
+            if (tb_ClientName.Text == "" || tb_ClientPhone.Text == "" || tb_ClientEmail.Text == "")
             { return 1; }   
             else if (dgv.Rows.Count == 0)
             { return 2; }    
@@ -117,14 +149,6 @@ namespace PBL3REAL.View
         //Booking Functions
         private void AddBooking()
         {
-            //SubBookingDetailVM sub = new SubBookingDetailVM
-            //{
-            //    BooDetNote = "None",
-            //    BoodetPrice = 1000000,
-            //    BoodetIdroom = 1,
-            //    BoodetRoTyCode = "TYP00002"
-            //};
-
             BookingDetailVM result = new BookingDetailVM
             {
                 BookNote = tb_Note.Text,
@@ -132,13 +156,12 @@ namespace PBL3REAL.View
                 BookCheckoutdate = dtp_To.Value,
                 BookBookdate = Convert.ToDateTime(tb_BookDate.Text),
                 BookStatus = cbb_Status.Text.Replace(" ",String.Empty),
-                BookTotalprice = Convert.ToInt32(tb_Total.Text),
-                BookDeposit = Convert.ToInt32(tb_Deposit.Text),
+                BookTotalprice = price,
+                BookDeposit = price / 2,
                 clientVM = new ClientVM
                 {
-                    CliName = "dadsa",
-
-                    CliPhone = "0981234567"
+                    CliName = tb_ClientName.Text,
+                    CliPhone = tb_ClientPhone.Text
                 }
             };
             foreach (RoomVM item in BookedRoomVMs)
@@ -151,14 +174,12 @@ namespace PBL3REAL.View
                     BoodetRoTyCode = cbb_RoomType.SelectedValue.ToString()
                 });
             }
-            //result.ListSub.Add(sub);
             BookingBLL.addBooking(result);
         }
         private void UpdateBooking(bool Changes)
         {
             List<int> listOld = new List<int>();
             List<int> listdel = new List<int>();
-            
             if (Changes)
             {
                 BookingDetailVM bookingDetailVM = BookingBLL.getDetail(1);
@@ -173,15 +194,6 @@ namespace PBL3REAL.View
                 //b2 Xoa het tat ca SubBookingDetailVm
                 bookingDetailVM.ListSub.Clear();
                 //b3 them SubBookingDetailVm ms vao
-                //SubBookingDetailVM sub1 = new SubBookingDetailVM
-                //{
-                //    BooDetNote = dgv.SelectedRows[0].Cells["BooDetNote"].Value.ToString(),
-                //    BoodetPrice = 2000000,
-                //    BoodetIdroom = 3,
-                //    BoodetRoTyCode = "TYP00004"
-                //};
-
-                //bookingDetailVM.ListSub.Add(sub1);
                 foreach(RoomVM item in BookedRoomVMs)
                 {
                     bookingDetailVM.ListSub.Add(new SubBookingDetailVM {
@@ -195,15 +207,7 @@ namespace PBL3REAL.View
             }
             else
             {
-                //SubBookingDetailVM sub1 = new SubBookingDetailVM
-                //{
-                //    BooDetNote = "Helllworllddddd",
-                //    BoodetPrice = 1000000,
-                //    BoodetIdroom = 3,
-                //    BoodetRoTyCode = "TYP00004"
-                //};
-                listdel.Add(7);
-                listdel.Add(8);
+                //foreach (SubBookingDetailVM item )
                 BookingDetailVM bookingDetailVM = BookingBLL.getDetail(1);
                 bookingDetailVM.BookNote = tb_Note.Text;
                 foreach (RoomVM item in BookedRoomVMs)
@@ -220,12 +224,48 @@ namespace PBL3REAL.View
             }
         }
         //Events
-        private void btn_Cancel_Click(object sender, EventArgs e)
+        private void rbtn_NewClient_CheckedChanged(object sender, EventArgs e)
         {
-            this.Dispose();
+            if (rbtn_NewClient.Checked)
+            {
+                tb_ClientSearch.Enabled = false;
+                picbx_ClientSearch.Enabled = false;
+            }
+        }
+        private void rbtn_OldClient_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbtn_OldClient.Checked)
+            {
+                tb_ClientSearch.Enabled = true;
+                picbx_ClientSearch.Enabled = true;
+            }
+        }
+        private void picbx_ClientSearch_Click(object sender, EventArgs e)
+        {
+            int value;
+            if (tb_ClientSearch.Text == "")
+            {
+                MessageBox.Show("Bạn chưa nhập dữ liệu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else 
+            {
+                if (!int.TryParse(tb_ClientSearch.Text, out value))
+                {
+                    MessageBox.Show("Dữ liệu bạn đã nhập không hợp lệ!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    //Gọi hàm search & trả kết quả
+                    //Fill kết quả vào tb_ClientName + tb_ClientEmail + tb_ClientPhone
+                }   
+            }   
         }
         private void picbx_Enter_Click(object sender, EventArgs e)
         {
+            roomVMs.Clear();
+            BookedRoomVMs.Clear();
+            subBookings.Clear();
+            dgv.DataSource = new List<SubBookingDetailVM>();
             LoadAvailableRoomList(((CbbItem)cbb_RoomType.SelectedItem).Value,dtp_From.Value,dtp_To.Value);
         }
         private void picbx_Add_Click(object sender, EventArgs e)
@@ -235,30 +275,31 @@ namespace PBL3REAL.View
             {
                 foreach (RoomVM item in roomVMs)
                 {
-                    if (item.IdRoom == ((CbbItem)cbb_Room.SelectedItem).Value)
+                    if (item.IdRoom == int.Parse(cbb_Room.SelectedValue.ToString()))
                     {
-                        subBookings.Add( new SubBookingDetailVM
+                        subBookings.Add(new SubBookingDetailVM
                         {
-                            BooDetNote = item.RoomDescription,
+                            //IdBoodet 
                             BoodetPrice = Convert.ToInt32(item.RotyCurrentprice),
+                            BooDetNote = item.RoomDescription,
                             BoodetIdroom = item.IdRoom,
                             BoodetRoTyCode = cbb_RoomType.SelectedValue.ToString(),
+                            BoodetIdbook = IDBook
                         });
                         BookedRoomVMs.Add(item);
                         roomVMs.Remove(item);
                         LoadBookedRoomList();
                         LoadAvailableTempRoomList();
                         break;
-                    }    
+                    }
                 }
             }    
         }
         private void picbx_Delete_Click(object sender, EventArgs e)
         {
-            //del room
-            if (dgv.SelectedRows.Count == 1)
+            if (dgv.SelectedRows.Count == 1 && dgv.Rows.Count > 0)
             {
-                foreach(RoomVM item in BookedRoomVMs)
+                foreach (RoomVM item in BookedRoomVMs)
                 {
                     if (item.IdRoom == int.Parse(dgv.SelectedRows[0].Cells["BoodetIdroom"].Value.ToString()))
                     {
@@ -269,15 +310,32 @@ namespace PBL3REAL.View
                                  BooDetNote = item.RoomDescription,
                                  BoodetPrice = Convert.ToInt32(item.RotyCurrentprice),
                                  BoodetIdroom = item.IdRoom,
-                                 BoodetRoTyCode = cbb_RoomType.SelectedValue.ToString(),
+                                 BoodetRoTyCode = item.RoTyName,
                              });
                         BookedRoomVMs.Remove(item);
                         LoadAvailableTempRoomList();
                         LoadBookedRoomList();
                         break;
-                    }    
-                }   
-            }    
+                    }
+                }
+                //SubBookingDetailVM temp = new SubBookingDetailVM();
+                //foreach (SubBookingDetailVM item in subBookings)
+                //{
+                //    if (item.BoodetIdroom == int.Parse(dgv.SelectedRows[0].Cells["BoodetIdroom"].Value.ToString()))
+                //    {
+                //        temp = item;
+                //        detailVM.ListSub.Remove(item);
+                //        break;
+                //    }
+                //}
+                //subBookings.Remove(temp);
+                //LoadAvailableTempRoomList();
+                //LoadBookedRoomList();
+            } 
+            else
+            {
+                MessageBox.Show("Bạn chưa chọn hoặc chọn nhiều hơn một phòng để xóa khỏi đơn booking", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void btn_OK_Click(object sender, EventArgs e)
         {
@@ -321,6 +379,10 @@ namespace PBL3REAL.View
         private void btn_Invoice_Click(object sender, EventArgs e)
         {
             //Export to invoice
+        }
+        private void btn_Cancel_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
         }
     }
 }

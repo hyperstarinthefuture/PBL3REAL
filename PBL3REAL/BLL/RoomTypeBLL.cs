@@ -46,6 +46,7 @@ namespace HotelManagement.BBL.Implement
             RoomType roomType = new RoomType();
             List<ImgStorage> imgstolist = new List<ImgStorage>();
             mapper.Map(roomTypeVM, roomType);
+            roomType.RoTyActiveflag = true;
             foreach(ImageVM imageVM in roomTypeVM.ListImg)
             {
                 ImgStorage imgStorage = new ImgStorage();

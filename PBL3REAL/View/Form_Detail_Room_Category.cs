@@ -22,7 +22,6 @@ namespace PBL3REAL.View
         public delegate void MyDel();
         public MyDel myDel;
         private RoomTypeBLL roomTypeBLL;
-        private QLUserBLL userBLL;
         private int idRoomType;
         private int TotalPic = 0;
         private int TotalPicAdded = 0;
@@ -33,10 +32,8 @@ namespace PBL3REAL.View
             InitializeComponent();
             roomTypeBLL = new RoomTypeBLL();
             LoadData(idRoomType,Editable);
-            this.idRoomType = idRoomType;
-            userBLL = new QLUserBLL();
+            this.idRoomType = idRoomType;   
             listdel = new List<int>();
-            string tempname = tb_RoomTypeCapacity.Text;
         }
         //Loading Data Function
         public void LoadData(int idroomtype, bool Editable) 
@@ -58,88 +55,107 @@ namespace PBL3REAL.View
                 switch (TotalLoadedPic)
                 {
                     case 6:
-                        using (FileStream fs = new FileStream(roomTypeVM.ListImg[5].ImgstoUrl, FileMode.Open))
+                        try 
                         {
-                            picbx_Add6.Image = Image.FromStream(fs);
-                            picbx_Add6.SizeMode = PictureBoxSizeMode.StretchImage;
-                            fs.Close();
+                            using (FileStream fs = new FileStream(roomTypeVM.ListImg[5].ImgstoUrl, FileMode.Open))
+                            {
+                                picbx_Add6.Image = Image.FromStream(fs);
+                                picbx_Add6.SizeMode = PictureBoxSizeMode.StretchImage;
+                                fs.Close();
+                            }
+                            picbx_Add6.BackgroundImage = null;
+                            picbx_Add6.AccessibleName = roomTypeVM.ListImg[5].IdImgsto.ToString();
                         }
-                        picbx_Add6.BackgroundImage = null;
-                        picbx_Add6.AccessibleName = roomTypeVM.ListImg[5].IdImgsto.ToString();
+                        catch (Exception e) { picbx_Add6.BackgroundImage = Properties.Resources.nothing_found_fluent_color_96px; }
                         TotalLoadedPic -= 1;
                         if (TotalLoadedPic > 0)
                         { goto case 5; }
-                        else
-                            break;
+                        break;
                     case 5:
-                        using (FileStream fs = new FileStream(roomTypeVM.ListImg[4].ImgstoUrl, FileMode.Open))
+                        try
                         {
-                            picbx_Add5.Image = Image.FromStream(fs);
-                            picbx_Add5.SizeMode = PictureBoxSizeMode.StretchImage;
-                            fs.Close();
+                            using (FileStream fs = new FileStream(roomTypeVM.ListImg[4].ImgstoUrl, FileMode.Open))
+                            {
+                                picbx_Add5.Image = Image.FromStream(fs);
+                                picbx_Add5.SizeMode = PictureBoxSizeMode.StretchImage;
+                                fs.Close();
+                            }
+                            picbx_Add5.BackgroundImage = null;
+                            picbx_Add5.AccessibleName = roomTypeVM.ListImg[4].IdImgsto.ToString();
                         }
-                        picbx_Add5.BackgroundImage = null;
-                        picbx_Add5.AccessibleName = roomTypeVM.ListImg[4].IdImgsto.ToString();
+                        catch (Exception e) { picbx_Add5.BackgroundImage = Properties.Resources.nothing_found_fluent_color_96px; }
                         TotalLoadedPic -= 1;
                         if (TotalPic == 5) { picbx_Add6.BackgroundImage = Properties.Resources.add_fluent_color_96px; }
                         if (TotalLoadedPic > 0)
                         { goto case 4; }
-                        else
-                            break;
+                        break;
                     case 4:
-                        using (FileStream fs = new FileStream(roomTypeVM.ListImg[3].ImgstoUrl, FileMode.Open))
+                        try 
                         {
-                            picbx_Add4.Image = Image.FromStream(fs);
-                            picbx_Add4.SizeMode = PictureBoxSizeMode.StretchImage;
-                            fs.Close();
+                            using (FileStream fs = new FileStream(roomTypeVM.ListImg[3].ImgstoUrl, FileMode.Open))
+                            {
+                                picbx_Add4.Image = Image.FromStream(fs);
+                                picbx_Add4.SizeMode = PictureBoxSizeMode.StretchImage;
+                                fs.Close();
+                            }
+                            picbx_Add4.BackgroundImage = null;
+                            picbx_Add4.AccessibleName = roomTypeVM.ListImg[3].IdImgsto.ToString();
                         }
-                        picbx_Add4.BackgroundImage = null;
-                        picbx_Add4.AccessibleName = roomTypeVM.ListImg[3].IdImgsto.ToString();
+                        catch (Exception e) { picbx_Add4.BackgroundImage = Properties.Resources.nothing_found_fluent_color_96px; }
                         TotalLoadedPic -= 1;
                         if (TotalPic == 4) { picbx_Add5.BackgroundImage = Properties.Resources.add_fluent_color_96px; }
                         if (TotalLoadedPic > 0)
                         { goto case 3; }
-                        else
-                            break;
+                        break;
                     case 3:
-                        using (FileStream fs = new FileStream(roomTypeVM.ListImg[2].ImgstoUrl, FileMode.Open))
+                        try
                         {
-                            picbx_Add3.Image = Image.FromStream(fs);
-                            picbx_Add3.SizeMode = PictureBoxSizeMode.StretchImage;
-                            fs.Close();
+                            using (FileStream fs = new FileStream(roomTypeVM.ListImg[2].ImgstoUrl, FileMode.Open))
+                            {
+                                picbx_Add3.Image = Image.FromStream(fs);
+                                picbx_Add3.SizeMode = PictureBoxSizeMode.StretchImage;
+                                fs.Close();
+                            }
+                            picbx_Add3.BackgroundImage = null;
+                            picbx_Add3.AccessibleName = roomTypeVM.ListImg[2].IdImgsto.ToString();
                         }
-                        picbx_Add3.BackgroundImage = null;
-                        picbx_Add3.AccessibleName = roomTypeVM.ListImg[2].IdImgsto.ToString();
+                        catch (Exception e) { picbx_Add3.BackgroundImage = Properties.Resources.nothing_found_fluent_color_96px; }
                         TotalLoadedPic -= 1;
                         if (TotalPic == 3) { picbx_Add4.BackgroundImage = Properties.Resources.add_fluent_color_96px; }
                         if (TotalLoadedPic > 0)
                         { goto case 2; }
-                        else
-                            break;
+                        break;
                     case 2:
-                        using (FileStream fs = new FileStream(roomTypeVM.ListImg[1].ImgstoUrl, FileMode.Open))
+                        try
                         {
-                            picbx_Add2.Image = Image.FromStream(fs);
-                            picbx_Add2.SizeMode = PictureBoxSizeMode.StretchImage;
-                            fs.Close();
+                            using (FileStream fs = new FileStream(roomTypeVM.ListImg[1].ImgstoUrl, FileMode.Open))
+                            {
+                                picbx_Add2.Image = Image.FromStream(fs);
+                                picbx_Add2.SizeMode = PictureBoxSizeMode.StretchImage;
+                                fs.Close();
+                            }
+                            picbx_Add2.BackgroundImage = null;
+                            picbx_Add2.AccessibleName = roomTypeVM.ListImg[1].IdImgsto.ToString();
                         }
-                        picbx_Add2.BackgroundImage = null;
-                        picbx_Add2.AccessibleName = roomTypeVM.ListImg[1].IdImgsto.ToString();
+                        catch (Exception e) { picbx_Add2.BackgroundImage = Properties.Resources.nothing_found_fluent_color_96px; }
                         TotalLoadedPic -= 1;
                         if (TotalPic == 2) { picbx_Add3.BackgroundImage = Properties.Resources.add_fluent_color_96px; }
                         if (TotalLoadedPic > 0)
                         { goto case 1; }
-                        else
-                            break;
+                        break;
                     case 1:
-                        using (FileStream fs = new FileStream(roomTypeVM.ListImg[0].ImgstoUrl, FileMode.Open))
+                        try
                         {
-                            picbx_Add1.Image = Image.FromStream(fs);
-                            picbx_Add1.SizeMode = PictureBoxSizeMode.StretchImage;
-                            fs.Close();
+                            using (FileStream fs = new FileStream(roomTypeVM.ListImg[0].ImgstoUrl, FileMode.Open))
+                            {
+                                picbx_Add1.Image = Image.FromStream(fs);
+                                picbx_Add1.SizeMode = PictureBoxSizeMode.StretchImage;
+                                fs.Close();
+                            }
+                            picbx_Add1.BackgroundImage = null;
+                            picbx_Add1.AccessibleName = roomTypeVM.ListImg[0].IdImgsto.ToString();
                         }
-                        picbx_Add1.BackgroundImage = null;
-                        picbx_Add1.AccessibleName = roomTypeVM.ListImg[0].IdImgsto.ToString();
+                        catch (Exception e) { picbx_Add1.BackgroundImage = Properties.Resources.nothing_found_fluent_color_96px; }
                         if (TotalPic == 1) { picbx_Add2.BackgroundImage = Properties.Resources.add_fluent_color_96px; }
                         break;
                     default:
@@ -159,7 +175,6 @@ namespace PBL3REAL.View
         //Create Storaging Folder
         private void CreateStoragingFolder()
         {
-            //string palettesPath = "..\\Room_Type";
             string palettesPath = Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName + "\\RoomType";
             try
             {
@@ -188,80 +203,162 @@ namespace PBL3REAL.View
             }
             return null;
         }
-        //Save IMG
-        private void SaveIMG()
+        //Update IMG 
+        private void UpdatedIMG()
         {
-            CreateStoragingFolder();
-            //string path = "..\\Properties\\Room_Type\\";
+            if (listdel.Count == 0)
+            {
+                if (roomTypeVM.ListImg.Count != TotalPic)
+                {
+                    //Chỉ add thêm
+                    for (int i = roomTypeVM.ListImg.Count + 1; i <= roomTypeVM.ListImg.Count + TotalPicAdded; i++)
+                    {
+                        SaveIMG(i);
+                    }   
+                }
+            }  
+            else
+            {
+                if (TotalPicAdded == 0) 
+                {
+                    //Chỉ xóa đi
+                    for (int i = roomTypeVM.ListImg.Count; i > TotalPic; i--)
+                    {
+                        DeleteIMG(i);
+                    }
+                }
+                else
+                {
+                    if (roomTypeVM.ListImg.Count < TotalPic)
+                    {
+                        //Xóa đi r add lại nhìu hơn
+                        for (int i = roomTypeVM.ListImg.Count - listdel.Count; i <= roomTypeVM.ListImg.Count; i++)
+                        {
+                            DeleteIMG(i);
+                        }    
+                        for (int i = roomTypeVM.ListImg.Count - listdel.Count; i <= TotalPic; i++)
+                        {
+                            SaveIMG(i);
+                        }    
+                    }    
+                    else if (roomTypeVM.ListImg.Count > TotalPic)
+                    {
+                        //XÓa đi r add lại ít hơn
+                        for (int i = roomTypeVM.ListImg.Count - listdel.Count; i <= roomTypeVM.ListImg.Count; i++)
+                        {
+                            DeleteIMG(i);
+                        }
+                        for (int i = roomTypeVM.ListImg.Count - listdel.Count; i <= TotalPic; i++)
+                        {
+                            SaveIMG(i);
+                        }
+                    }   
+                    else
+                    {
+                        //Xóa đi bao nhiu add lại bấy nhiu
+                        for (int i = 1; i <= roomTypeVM.ListImg.Count; i++)
+                        {
+                            DeleteIMG(i);
+                        }    
+                        for(int i = 1; i <= roomTypeVM.ListImg.Count; i++)
+                        {
+                            SaveIMG(i);
+                        }    
+                    }
+                }    
+            }    
+        }
+        //Delete IMG
+        private void DeleteIMG(int index)
+        {
             string path = Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName + "\\RoomType\\";
             int TotalPicSaved = TotalPic;
-            string fullpath;
-            switch (TotalPic)
+            string fullpath = path + "RoomType_" + idRoomType.ToString();
+            switch (index)
             {
                 case 6:
-                    fullpath = path + "RoomType_" + idRoomType.ToString() + "_6.Jpeg";
-                    if (File.Exists(fullpath)) { File.Delete(fullpath); }
+                    fullpath = fullpath + "_6.Jpeg";
+                    break;
+                case 5:
+                    fullpath = fullpath + "_5.Jpeg";
+                    break;
+                case 4:
+                    fullpath = fullpath + "_4.Jpeg";
+                    break;
+                case 3:
+                    fullpath = fullpath + "_3.Jpeg";
+                    break;
+                case 2:
+                    fullpath = fullpath + "_2.Jpeg";
+                    break;
+                case 1:
+                    fullpath = fullpath + "_1.Jpeg";
+                    break;
+                default:
+                    break;
+            }
+            try
+            {
+                File.Delete(fullpath);
+            }
+            catch (Exception e) { }
+        }
+        //Save IMG
+        private void SaveIMG(int index)
+        {
+            CreateStoragingFolder();
+            string path = Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName + "\\RoomType\\";
+            string fullpath = path + "RoomType_" + idRoomType.ToString();
+            switch (index)
+            {
+                case 6:
+                    fullpath =  fullpath + "_6.Jpeg";
                     if (picbx_Add6.Image != null)
                     {
                         picbx_Add6.Image.Save(fullpath, System.Drawing.Imaging.ImageFormat.Jpeg);
                         roomTypeVM.ListImg.Add(new ImageVM { ImgstoUrl = fullpath });
                     }
-                    TotalPicSaved -= 1;
-                    if (TotalPicSaved == 0) { return; }
-                    goto case 5;
+                    break;
                 case 5:
-                    fullpath = path + "RoomType_" + idRoomType.ToString() + "_5.Jpeg";
-                    if (File.Exists(fullpath)) { File.Delete(fullpath); }
+                    fullpath = fullpath + "_5.Jpeg";
                     if (picbx_Add5.Image != null)
                     {
                         picbx_Add5.Image.Save(fullpath, System.Drawing.Imaging.ImageFormat.Jpeg);
                         roomTypeVM.ListImg.Add(new ImageVM { ImgstoUrl = fullpath });
                     }
-                    TotalPicSaved -= 1;
-                    if (TotalPicSaved == 0) { return; }
-                    goto case 4;
+                    break;
                 case 4:
-                    fullpath = path + "RoomType_" + idRoomType.ToString() + "_4.Jpeg";
-                    if (File.Exists(fullpath)) { File.Delete(fullpath); }
+                    fullpath = fullpath + "_4.Jpeg";
                     if (picbx_Add4.Image != null)
                     {
                         picbx_Add4.Image.Save(fullpath, System.Drawing.Imaging.ImageFormat.Jpeg);
                         roomTypeVM.ListImg.Add(new ImageVM { ImgstoUrl = fullpath });
                     }
-                    TotalPicSaved -= 1;
-                    if (TotalPicSaved == 0) { return; }
-                    goto case 3;
+                    break;
                 case 3:
-                    fullpath = path + "RoomType_" + idRoomType.ToString() + "_3.Jpeg";
-                    if (File.Exists(fullpath)) { File.Delete(fullpath); }
+                    fullpath = fullpath + "_3.Jpeg";
                     if (picbx_Add3.Image != null)
                     {
                         picbx_Add3.Image.Save(fullpath, System.Drawing.Imaging.ImageFormat.Jpeg);
                         roomTypeVM.ListImg.Add(new ImageVM { ImgstoUrl = fullpath });
                     }
-                    TotalPicSaved -= 1;
-                    if (TotalPicSaved == 0) { return; }
-                    goto case 2;
+                    break;
                 case 2:
-                    fullpath = path + "RoomType_" + idRoomType.ToString() + "_2.Jpeg";
-                    if (File.Exists(fullpath)) { File.Delete(fullpath); }
+                    fullpath = fullpath + "_2.Jpeg";
                     if (picbx_Add2.Image != null)
                     {
                         picbx_Add2.Image.Save(fullpath, System.Drawing.Imaging.ImageFormat.Jpeg);
                         roomTypeVM.ListImg.Add(new ImageVM { ImgstoUrl = fullpath });
                     }
-                    TotalPicSaved -= 1;
-                    if (TotalPicSaved == 0) { return; }
-                    goto case 2;
+                    break;
                 case 1:
-                    fullpath = path + "RoomType_" + idRoomType.ToString() + "_1.Jpeg";
-                    if (File.Exists(fullpath)) { File.Delete(fullpath); }
+                    fullpath = fullpath + "_1.Jpeg";
                     if(picbx_Add1.Image != null)
                     {
                         picbx_Add1.Image.Save(fullpath, System.Drawing.Imaging.ImageFormat.Png);
                         roomTypeVM.ListImg.Add(new ImageVM { ImgstoUrl = fullpath });
                     }
-                    return;
+                    break;
                 default:
                     break;
             }    
@@ -288,21 +385,7 @@ namespace PBL3REAL.View
             roomTypeVM.ListImg.Add(image2);
             roomTypeBLL.addRoomType(roomTypeVM);
         }
-        private void EditRoomType(int res)
-        {
-            string temp1 = tb_RoomTypeCapacity.Text;
-            switch (TotalPic - TotalPicAdded)
-            {
-                case 6:
-                    break;
-                default:
-                    SaveIMG();
-                    break;
-            }
-            roomTypeVM.RotyCapacity = res;
-            List<int> temp = listdel;
-            roomTypeBLL.editRoomType(roomTypeVM, temp);
-        }
+        
         //Events
         private void picbx_add1_Click(object sender, EventArgs e)
         {
@@ -316,7 +399,7 @@ namespace PBL3REAL.View
                     picbx_Add1.SizeMode = PictureBoxSizeMode.StretchImage;
                     picbx_Add2.BackgroundImage = temp;
                     TotalPic += 1;
-                    TotalPicAdded += 1;
+                    if (TotalPic > roomTypeVM.ListImg.Count) { TotalPicAdded += 1; }
                 }
                 else
                 {
@@ -336,7 +419,7 @@ namespace PBL3REAL.View
                     picbx_Add2.SizeMode = PictureBoxSizeMode.StretchImage;
                     picbx_Add3.BackgroundImage = temp;
                     TotalPic += 1;
-                    TotalPicAdded += 1;
+                    if (TotalPic > roomTypeVM.ListImg.Count) { TotalPicAdded += 1; }
                 }
                 else
                 {
@@ -356,7 +439,7 @@ namespace PBL3REAL.View
                     picbx_Add3.SizeMode = PictureBoxSizeMode.StretchImage;
                     picbx_Add4.BackgroundImage = temp;
                     TotalPic += 1;
-                    TotalPicAdded += 1;
+                    if (TotalPic > roomTypeVM.ListImg.Count) { TotalPicAdded += 1; }
                 }
                 else
                 {
@@ -376,7 +459,7 @@ namespace PBL3REAL.View
                     picbx_Add4.SizeMode = PictureBoxSizeMode.StretchImage;
                     picbx_Add5.BackgroundImage = temp;
                     TotalPic += 1;
-                    TotalPicAdded += 1;
+                    if (TotalPic > roomTypeVM.ListImg.Count) { TotalPicAdded += 1; }
                 }
                 else
                 {
@@ -396,7 +479,7 @@ namespace PBL3REAL.View
                     picbx_Add5.SizeMode = PictureBoxSizeMode.StretchImage;
                     picbx_Add6.BackgroundImage = temp;
                     TotalPic += 1;
-                    TotalPicAdded += 1;
+                    if (TotalPic > roomTypeVM.ListImg.Count) { TotalPicAdded += 1; }
                 }
                 else
                 {
@@ -414,7 +497,7 @@ namespace PBL3REAL.View
                 {
                     picbx_Add6.SizeMode = PictureBoxSizeMode.StretchImage;
                     TotalPic += 1;
-                    TotalPicAdded += 1;
+                    if (TotalPic > roomTypeVM.ListImg.Count) { TotalPicAdded += 1; }
                 }
                 else
                 {
@@ -426,11 +509,6 @@ namespace PBL3REAL.View
         {
             //Gọi hàm BLL xử lí nghiệp vụ
             //myDel();
-            string TEMPNAME = tb_RoomTypeCapacity.Text;
-            if (listdel.Count == 0)
-            {
-                //this.Dispose();
-            }
             if (idRoomType == 0)
             {
                 //Add
@@ -439,10 +517,17 @@ namespace PBL3REAL.View
             else
             {
                 //Edit
-                int res = 0;
-                int.TryParse(tb_RoomTypeCapacity.Text, out res);
-                EditRoomType(res);
+                int capacity = 0 , price =0;
+                int.TryParse(tb_RoomTypeCapacity.Text, out capacity);
+                int.TryParse(tb_RoomTypePrice.Text, out price);
+                UpdatedIMG();
+                roomTypeVM.RotyCapacity = capacity;
+                roomTypeVM.RotyName = tb_RoomTypeName.Text;
+                roomTypeVM.RotyCurrentprice = price;
+                roomTypeVM.RotyDescription = tb_RoomTypeDescription.Text;
+                roomTypeBLL.editRoomType(roomTypeVM, listdel);
             }
+            myDel();
             this.Dispose();
         }
         private void btn_Reset_Click(object sender, EventArgs e)

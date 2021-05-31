@@ -64,6 +64,11 @@ namespace PBL3REAL.View
             f.ShowDialog();
             this.Show();
         }
+
+        private void btn_Logout_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
     }
 }
 

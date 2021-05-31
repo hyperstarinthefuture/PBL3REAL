@@ -180,6 +180,7 @@ namespace PBL3REAL.View
             this.btn_Logout.Text = "Log out";
             this.btn_Logout.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_Logout.UseVisualStyleBackColor = true;
+            this.btn_Logout.Click += new System.EventHandler(this.btn_Logout_Click);
             // 
             // tableLayoutPanel1
             // 

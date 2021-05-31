@@ -33,6 +33,8 @@ namespace HotelManagement.BLL.Implement
 
         public void addRoom(RoomDetailVM roomDetailVM)
         {
+            var test = _roomDAL.findByProperty(1, 1, 0, roomDetailVM.RoomName,0);
+            if (test != null) throw new ArgumentException("Room Name already existed");
             int idRoom = _roomDAL.getnextid();
             Room room = new Room();
             mapper.Map(roomDetailVM, room);
@@ -109,11 +111,11 @@ namespace HotelManagement.BLL.Implement
                 Console.WriteLine(e.Message);
             }
         }
-        public List<RoomVM> findByProperty(int pages, int rows, int idroomtype, string name)
+        public List<RoomVM> findByProperty(int pages, int rows, int idroomtype, string name,int isActive)
         {
             int start = (pages - 1) * rows;
             int length = rows;
-            List<Room> listRoom = _roomDAL.findByProperty(start, length, idroomtype ,name);
+            List<Room> listRoom = _roomDAL.findByProperty(start, length, idroomtype ,name,isActive);
             List<RoomVM> listRoomVM = new List<RoomVM>();
             foreach (Room room in listRoom)
             {
@@ -170,17 +172,17 @@ namespace HotelManagement.BLL.Implement
             return listcbb;
         }
 
-        public int getPagination()
+        public int getPagination(int rows ,int idRoomType, string name,int isActive)
         {
-            int totalRows = _roomDAL.getTotalRow();
+            int totalRows = _roomDAL.getTotalRow(idRoomType,name,isActive);
             int totalpage;
-            if (totalRows % 2 == 0)
+            if (totalRows % rows == 0)
             {
-                totalpage = totalRows / 2;
+                totalpage = totalRows / rows;
             }
             else
             {
-                totalpage = totalRows / 2 + 1;
+                totalpage = totalRows / rows + 1;
             }
             return totalpage;
         }

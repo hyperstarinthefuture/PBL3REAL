@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <Compile Update="View\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\Form2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\Form_Accountant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\Form_Booking.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\Form_Detail_Invoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\Form_Detail_Room.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\Form_Detail_Room_Category.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\Form_Home_Admin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\Form_HRM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\Form_Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\Form_Receptionist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\Form_Staff.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\Form_Switch_Role.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\Form_User_Profile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\Form_View_Statistic+Analyze.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>

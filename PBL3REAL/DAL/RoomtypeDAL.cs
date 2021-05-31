@@ -32,7 +32,7 @@ namespace HotelManagement.DAL.Implement
                 case "Current Price Desc": query = query.OrderByDescending(x => x.RotyCurrentprice); break;
                 default: break;
             }
-            List<RoomType> result = query.ToList();
+            List<RoomType> result = query.AsNoTracking().ToList();
             return result;
         }
 

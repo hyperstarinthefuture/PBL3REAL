@@ -93,6 +93,16 @@ namespace PBL3REAL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap active_state_fluent_color_96px {
+            get {
+                object obj = ResourceManager.GetObject("active_state_fluent_color_96px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap add_fluent_color_48px {
             get {
                 object obj = ResourceManager.GetObject("add_fluent-color_48px", resourceCulture);
@@ -433,6 +443,16 @@ namespace PBL3REAL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap inactive_state_fluent_color_96px {
+            get {
+                object obj = ResourceManager.GetObject("inactive_state_fluent_color_96px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap info_48px {
             get {
                 object obj = ResourceManager.GetObject("info_48px", resourceCulture);
@@ -616,6 +636,16 @@ namespace PBL3REAL.Properties {
         internal static System.Drawing.Bitmap next_page_windows10_32px {
             get {
                 object obj = ResourceManager.GetObject("next_page_windows10_32px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap nothing_found_fluent_color_96px {
+            get {
+                object obj = ResourceManager.GetObject("nothing_found_fluent_color_96px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

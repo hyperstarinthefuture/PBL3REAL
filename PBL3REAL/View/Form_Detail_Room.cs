@@ -15,6 +15,8 @@ namespace HotelManagement.View
 {
     public partial class Form_Detail_Room : Form
     {
+        public delegate void MyDel();
+        public MyDel myDel;
         private int idRoom;
         private RoomBLL _roomBLL;
         private RoomTypeBLL _roomTypeBLL;
@@ -93,67 +95,9 @@ namespace HotelManagement.View
                 }
             }
         }
-        //Reset Data
-        private void ResetData()
-        {
-
-        }
-        //Room Processing Functions
-        private void AddRoom()
-        {
-            RoomDetailVM roomDetailVM = new RoomDetailVM
-            {
-                RoomName = "Cuongpr",
-                RotyCurrentprice = 2000000,
-                RoomDescription = "ko co"
-            };
-            /* roomDetailVM.MapRoomtype.Add(1, "single room");*/
-            StatusTimeVM statusTimeVM1 = new StatusTimeVM
-            {
-                StatimFromdate = DateTime.Now,
-                StatimTodate = Convert.ToDateTime("01/10/2022"),
-            };
-            statusTimeVM1.statusVM = new StatusVM
-            {
-                IdStatus = 1
-            };
-            roomDetailVM.ListStatusTime.Add(statusTimeVM1);
-            StatusTimeVM statusTimeVM2 = new StatusTimeVM
-            {
-                StatimFromdate = DateTime.Now,
-                StatimTodate = Convert.ToDateTime("01/12/2021"),
-            };
-            statusTimeVM2.statusVM = new StatusVM
-            {
-                IdStatus = 2
-            };
-            roomDetailVM.ListStatusTime.Add(statusTimeVM2);
-            _roomBLL.addRoom(roomDetailVM);
-        }
-        private void EditRoom()
-        {
-            RoomDetailVM roomDetailVM = _roomBLL.findByID(1);
-            roomDetailVM.RoomName = "PROROOOM";
-            //edit status time
-            roomDetailVM.ListStatusTime[1].StatimTodate = Convert.ToDateTime("01/10/2021");
-            //add Status time
-            StatusVM statusVM = new StatusVM();
-            statusVM.IdStatus = 1;
-            StatusTimeVM statusTimeVM = new StatusTimeVM();
-            statusTimeVM.IdStatim = 4; //gia su minh sua lai thong tin tk status_time da co trong db
-            statusTimeVM.StatimFromdate = DateTime.Now;
-            statusTimeVM.StatimTodate = Convert.ToDateTime("12/12/2021");
-            statusTimeVM.statusVM = statusVM;
-            //roomVM.ListStatusTime.Add(statusTimeVM);
-            //del sattus time
-            List<int> listdel = new List<int>();
-            listdel.Add(3);
-            _roomBLL.editRoom(roomDetailVM, null);
-        }
-        public void PaginationRoom()
-        {
-            tb_PageNumber.Text = _roomBLL.getPagination().ToString();
-        }
+       
+       
+      
         //Events
         private void btn_OK_Click(object sender, EventArgs e)
         {
@@ -168,10 +112,12 @@ namespace HotelManagement.View
             {
                 _roomBLL.addRoom(roomDetailVM);
             }
+            myDel();
             this.Dispose();
         }
         private void btn_Cancel_Click(object sender, EventArgs e)
         {
+            myDel();
             this.Dispose();
         }
         private void btn_Reset_Click(object sender, EventArgs e)

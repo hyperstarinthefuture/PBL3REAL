@@ -412,14 +412,14 @@ namespace PBL3REAL
         }
         public void showRoom()
         {
-            List<RoomVM> listVM = roomBLL.findByProperty(1,2,0,"A10");
+            List<RoomVM> listVM = roomBLL.findByProperty(1,2,0,"A10",0);
             string json = JsonConvert.SerializeObject(listVM, Formatting.Indented);
             richTextBox1.Text = json;
         }
 
         public void PaginationRoom()
         {
-            textBox1.Text = roomBLL.getPagination().ToString();
+            textBox1.Text = roomBLL.getPagination(2,0,"",0).ToString();
 
         }
       

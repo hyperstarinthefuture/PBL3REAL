@@ -58,7 +58,6 @@ namespace HotelManagement.DAL.Implement
         }
         public void delete(int id)
         {
-     
                  Room room = _appDbContext.Rooms.Find(id);
                  if (room != null) room.RoomActiveflag = false;
                 _appDbContext.Rooms.Update(room);
@@ -90,7 +89,7 @@ namespace HotelManagement.DAL.Implement
             List<Room> result = _appDbContext.Rooms.FromSqlRaw($"GetAvailableRoom {idRoomType} , @fromDate,@toDate", parameter1, parameter2).ToList();
             return result;
         }
-        public List<Room> findByProperty(int start, int length, int idroomtype, string name)
+        public List<Room> findByProperty(int start, int length, int idroomtype, string name,int isActive)
         {
             var predicate = PredicateBuilder.True<Room>();
 
@@ -98,7 +97,8 @@ namespace HotelManagement.DAL.Implement
 
             if (!string.IsNullOrEmpty(name)) predicate = predicate.And(x => x.RoomName.Contains(name));
 
-
+            if (isActive == 1) predicate = predicate.And(x => x.RoomActiveflag == true);
+            else if (isActive == 2) predicate = predicate.And(x => x.RoomActiveflag == false);
 
             var result = _appDbContext.Rooms.Where(predicate).Include(x => x.RoomIdroomtypeNavigation)
                                             .Skip(start).Take(length)
@@ -124,20 +124,22 @@ namespace HotelManagement.DAL.Implement
          
             return joinResult;
         }
-        public int getTotalRow()
+        public int getTotalRow(int idRoomType, string name, int isActive)
         {
-            int rows = 0;
-            using (var command = _appDbContext.Database.GetDbConnection().CreateCommand())
-            {
-                command.CommandText = "Exec TotalRows room";
-                _appDbContext.Database.OpenConnection();
-                using (var result = command.ExecuteReader())
-                {
-                    result.Read();
-                    rows = (int)result[0];
-                }
-            }
-            return rows;
+            int totalrows = 0;
+            var predicate = PredicateBuilder.True<Room>();
+            if (idRoomType != 0) predicate = predicate.And(x => x.RoomIdroomtype == idRoomType);
+
+            if (!string.IsNullOrEmpty(name)) predicate = predicate.And(x => x.RoomName.Contains(name));
+
+            if (isActive == 1) predicate = predicate.And(x => x.RoomActiveflag == true);
+            else if (isActive == 2) predicate = predicate.And(x => x.RoomActiveflag == false);
+
+            /*   totalrows = (from room in AppDbContext.Instance.Rooms
+                            where predicate
+                            select room).Count();*/
+            totalrows = AppDbContext.Instance.Rooms.Where(predicate).Count();
+            return totalrows;
         }
 
 

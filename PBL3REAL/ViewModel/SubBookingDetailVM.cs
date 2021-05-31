@@ -11,8 +11,6 @@ namespace PBL3REAL.ViewModel
         public string BooDetNote { get; set; }
         public int BoodetIdroom { get; set; }
         public string BoodetRoTyCode { get; set; }
-
         public int BoodetIdbook { get; set; }
-
     }
 }
